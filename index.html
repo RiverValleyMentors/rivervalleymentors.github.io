@@ -680,6 +680,11 @@
             justify-content: space-between;
             align-items: center;
             transition: background 0.3s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            font-size: inherit;
         }
 
         .faq-question:hover {
@@ -1009,7 +1014,7 @@
     <header>
         <nav class="container">
             <div class="logo-section">
-                <div class="logo-placeholder" role="img" aria-label="RivVal Tutoring Logo">LOGO</div>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='25' fill='%23ede5d3'/%3E%3Ctext x='25' y='30' text-anchor='middle' font-family='Georgia,serif' font-size='12' font-weight='bold' fill='%232d5a5a'%3ELOGO%3C/text%3E%3C/svg%3E" alt="RivVal Tutoring Logo" class="logo-placeholder">
                 <div class="brand-text">
                     <h2>RivVal</h2>
                     <p class="brand-subtitle">River Valley Mentors</p>
@@ -1282,7 +1287,7 @@
             <div class="container">
                 <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center;">
                     <div style="text-align: center;">
-                        <div style="width: 250px; height: 250px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; color: var(--primary-green); font-size: 4rem; font-weight: bold;" role="img" aria-label="Tutor illustration">👨‍🎓</div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Ccircle cx='125' cy='125' r='125' fill='%23f5f1e8'/%3E%3Ctext x='125' y='150' text-anchor='middle' font-family='Georgia,serif' font-size='100' font-weight='bold' fill='%232d5a5a'%3E👨‍🎓%3C/text%3E%3C/svg%3E" alt="Tutor illustration" style="width: 250px; height: 250px; background: var(--cream); border-radius: 50%; display: block; margin: 0 auto;" />
                         <div style="margin-top: 20px; padding: 20px; background: var(--cream); border-radius: 15px;">
                             <h4 style="color: var(--primary-green); margin-bottom: 10px;">Quick Stats</h4>
                             <p style="margin-bottom: 5px;">📅 Usually responds within 24 hours</p>
@@ -1383,90 +1388,90 @@
                 </div>
                 <div class="faq-grid" id="faqGrid">
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>What does "RivVal" mean and how does the competitive approach work?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>RivVal stands for "River Valley" but also represents "rival" - our core philosophy of helping students rival their best selves. We use competitive strategies, progress tracking, and personalized challenges to motivate students to outperform their previous achievements, not compete against others. It's about becoming your own academic rival.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>How do online tutoring sessions work technically?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>We use Google Meets for all online sessions - it's free, reliable, and works on any device. You'll receive a meeting link before each session. All you need is a computer, tablet, or phone with internet access. We use digital whiteboards, screen sharing, and collaborative tools to work through problems together in real-time. It's just like being in the same room!</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>What's the real difference between packages and which should I choose?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>Drop-in sessions ($45 each) are perfect for occasional help or test prep. The Growth Challenger (12 sessions, $40 each) saves you $60 and includes progress tracking, custom study plans, and consistent weekly slots - ideal for steady improvement. The Excellence Mastery (24 sessions, $38 each) saves $168, includes 2 bonus sessions, intensive diploma prep, and premium features like quarterly parent consultations - perfect for comprehensive academic transformation.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>Can you help with multiple subjects in the same session?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>Absolutely! Both math and English tutoring are available, so we can work on both subjects within the same session or alternate between subjects across different sessions. A customized plan is created based on each student's specific needs, goals, and time constraints. Many students find this integrated approach helps them see connections between subjects.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>How exactly does the Rival & Refer program work?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>Simple! When you refer a friend who books their first package (not just a drop-in), you receive a $25 credit toward your next session and your friend gets $20 off their first package. Just have them mention your name when they book their intro session. There's no limit to how many friends you can refer - help them rival their limits and save money too!</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>How do you track progress and measure "rivaling" performance?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>We use detailed progress tracking including grade improvements, concept mastery assessments, and confidence surveys. Package students receive regular progress reports showing exactly how they're rivaling their previous performance. We track metrics like problem-solving speed, accuracy improvements, and academic confidence levels to ensure measurable growth.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>What if I need to reschedule or cancel a session?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>We understand life happens! For package students, you can reschedule with 24-hour notice at no charge. Drop-in sessions require 48-hour notice for full refund. Emergency situations are handled case-by-case with flexibility. We want to work with your schedule, not against it.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>Do you offer group tutoring or just individual sessions?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>Currently, we focus on individual sessions to provide personalized attention and customized learning plans. However, "Group Rivals" sessions are coming soon for students who want to challenge each other in a collaborative competitive environment. Individual sessions ensure you get the specific help you need to rival your best performance.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>How do payment plans work for the packages?</span>
                             <span aria-hidden="true">+</span>
-                        </div>
+                        </button>
                         <div class="faq-answer">
                             <p>Growth Challenger can be split into 3 payments of $165 each. Excellence Mastery can be split into 4 payments of $240 each. We can also create custom payment schedules that work with your budget - just ask during your free consultation. All payment plans are interest-free and designed to make quality tutoring accessible.</p>
                         </div>
@@ -1482,7 +1487,7 @@
                 <div class="contact-buttons">
                     <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="contact-button" target="_blank">📅 Book Free Intro Session</a>
                     <a href="mailto:rivervalleymentors@gmail.com" class="contact-button">✉️ Email RivVal</a>
-                    <a href="#" class="contact-button" onclick="alert('Please use the booking link or email for initial contact. Phone consultations available after booking.')">📞 Contact Info</a>
+                    <button type="button" class="contact-button" onclick="alert('Please use the booking link or email for initial contact. Phone consultations available after booking.')">📞 Contact Info</button>
                 </div>
                 
                 <div class="contact-form">
@@ -1519,6 +1524,7 @@
                             <textarea id="message" name="message" placeholder="Tell me about your academic goals or what you want to rival..."></textarea>
                         </div>
                         <button type="submit" class="contact-button" style="width: 100%; margin-top: 10px;">Send Message</button>
+                        <button type="button" class="contact-button" style="width: 100%; margin-top: 10px; background: #eee; color: var(--text-dark);" onclick="document.getElementById('contactForm').reset();">Reset Form</button>
                     </form>
                 </div>
             </div>
@@ -1670,13 +1676,7 @@
         icon.textContent = answer.classList.contains('active') ? '−' : '+';
     }
 
-    // Handle keyboard navigation for FAQ
-    function handleFAQKeydown(event, element) {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            toggleFAQ(element);
-        }
-    }
+
 
     // FAQ Search functionality
     document.addEventListener('DOMContentLoaded', function() {
@@ -1701,6 +1701,12 @@
         }
     });
 
+    /**
+     * Handles contact form submission by constructing a mailto: link with the form data.
+     * This opens the user's default email client to send the inquiry.
+     * Limitations: This method relies on the user's browser and email client supporting mailto links.
+     * It may not work on all browsers, devices, or with webmail clients, and does not guarantee message delivery.
+     */
     // Contact form handler
     function handleFormSubmit(event) {
         event.preventDefault();
@@ -1709,7 +1715,7 @@
         const email = formData.get('email');
         const grade = formData.get('grade');
         const subjects = formData.get('subjects');
-        const package = formData.get('package');
+        const selectedPackage = formData.get('package');
         const message = formData.get('message');
         
         // Create mailto link with form data
@@ -1720,18 +1726,25 @@
             `Email: ${email}\n` +
             `Grade Level: ${grade}\n` +
             `Subjects: ${subjects}\n` +
-            `Package Interest: ${package}\n` +
-            `Message: ${message}\n\n` +
-            `Please let me know about availability and how I can start rivaling my best self.\n\nThanks!`
+            `Package: ${selectedPackage}\n\n` +
+            `Message:\n${message}`
         );
-        
+
+        // Try to open mail client
         window.location.href = `mailto:rivervalleymentors@gmail.com?subject=${subject}&body=${body}`;
-        
-        // Show confirmation
+
+        // Fallback: show message for manual copy if mail client does not open
+        setTimeout(function() {
+            if (!document.hasFocus()) return; // If mail client opened, skip
+            const fallbackMsg =
+                'If your email client did not open, please copy and send the following details to rivervalleymentors@gmail.com:\n\n' +
+                `Subject: ${decodeURIComponent(subject)}\n\nMessage:\n${decodeURIComponent(body)}`;
+            alert(fallbackMsg);
+        }, 1500);
+
+        // Always show confirmation
         alert('Opening your email client with the message. If it doesn\'t work, please email us directly at rivervalleymentors@gmail.com');
-        
-        // Reset form
-        event.target.reset();
+        // Do not reset the form automatically; user can clear manually if desired.
     }
     </script>
 </body>
