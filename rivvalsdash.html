@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Member Portal | RivVal Tutoring - River Valley Mentors</title>
+  <meta name="description" content="Exclusive member portal for River Valley Mentors students and parents - Edmonton's premier tutoring service">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://rivervalleymentors.github.io/members.html" />
+  <meta name="theme-color" content="#2d5a5a" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary-green: #2d5a5a;
+      --accent-green: #4a7c59;
+      --sage-green: #6b8e6b;
+      --cream: #f5f1e8;
+      --warm-cream: #f0ead6;
+      --text-dark: #2c2c2c;
+      --text-muted: #6b7280;
+      --rival-blue: #3b82f6;
+      --success-green: #10b981;
+      --warning-orange: #f59e0b;
+      --gradient-bg: linear-gradient(135deg, var(--cream) 0%, var(--warm-cream) 100%);
+      --card-shadow: 0 4px 20px rgba(45,90,90,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--gradient-bg);
+      color: var(--primary-green);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Enhanced floating elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .floating-shape {
+      position: absolute;
+      opacity: 0.05;
+      animation: float 15s ease-in-out infinite;
+    }
+
+    .shape-1 { 
+      left: 5%; 
+      width: 60px; 
+      height: 60px; 
+      background: var(--accent-green); 
+      border-radius: 50%; 
+      animation-delay: 0s; 
+    }
+    
+    .shape-2 { 
+      left: 85%; 
+      width: 40px; 
+      height: 40px; 
+      background: var(--rival-blue); 
+      border-radius: 20px; 
+      animation-delay: 5s; 
+    }
+    
+    .shape-3 { 
+      left: 50%; 
+      width: 30px; 
+      height: 30px; 
+      background: var(--success-green); 
+      transform: rotate(45deg); 
+      animation-delay: 10s; 
+    }
+
+    @keyframes float {
+      0%, 100% { 
+        transform: translateY(100vh) rotate(0deg); 
+        opacity: 0; 
+      }
+      10%, 90% { opacity: 0.05; }
+      50% { 
+        transform: translateY(-10vh) rotate(360deg); 
+      }
+    }
+
+    .main-container {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .header {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      text-align: center;
+      background: white;
+      box-shadow: var(--card-shadow);
+      padding: 40px 30px;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-green), var(--rival-blue));
+    }
+
+    .logo-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto 24px;
+      gap: 8px;
+    }
+
+    .logo-circle {
+      display: none;
+    }
+
+    .logo-mem {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-location {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-align: center;
+    }
+
+    @keyframes gentle-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      margin-bottom: 12px;
+      color: var(--primary-green);
+      font-weight: 700;
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .location-badge {
+      background: linear-gradient(135deg, var(--warning-orange), #f97316);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .launch-status {
+      background: linear-gradient(135deg, var(--success-green), #059669);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 30px;
+      animation: status-glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes status-glow {
+      0% { box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+      100% { box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5); }
+    }
+
+    /* Features Grid */
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--primary-green);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 32px 28px;
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      border: 2px solid transparent;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transition: left 0.6s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(45,90,90,0.15);
+    }
+
+    .feature-card:hover::before {
+      left: 100%;
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: white;
+      box-shadow: 0 4px 15px rgba(45, 90, 90, 0.3);
+    }
+
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .feature-description {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .feature-benefits {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-benefits li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .feature-benefits li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--success-green);
+      font-weight: bold;
+    }
+
+    .coming-soon-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--rival-blue);
+      color: white;
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .available-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--success-green);
+      color: white;
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 24px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      margin: 40px auto;
+      max-width: 800px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--success-green), var(--rival-blue));
+    }
+
+    .cta-title {
+      font-size: 2rem;
+      color: var(--primary-green);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .cta-description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+      color: white;
+      border: none;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary-green);
+      border: 2px solid var(--primary-green);
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(45, 90, 90, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-green);
+      color: white;
+    }
+
+    /* Progress indicator */
+    .progress-section {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .progress-bar {
+      width: 100%;
+      max-width: 400px;
+      height: 8px;
+      background: var(--cream);
+      border-radius: 4px;
+      margin: 20px auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--success-green), var(--rival-blue));
+      border-radius: 4px;
+      width: 85%;
+      animation: progress-grow 2s ease-out;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      animation: progress-shine 2s ease-in-out infinite;
+    }
+
+    @keyframes progress-grow {
+      from { width: 0%; }
+      to { width: 85%; }
+    }
+
+    @keyframes progress-shine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .progress-text {
+      font-size: 1rem;
+      color: var(--success-green);
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header { 
+        padding: 30px 20px; 
+        margin: 0 10px 30px;
+      }
+      
+      h1 { font-size: 2.5rem; }
+      .subtitle { font-size: 1.1rem; }
+      
+      .features-grid { 
+        grid-template-columns: 1fr; 
+        gap: 20px;
+      }
+      
+      .feature-card { padding: 24px 20px; }
+      
+      .cta-section { 
+        padding: 40px 24px; 
+        margin: 30px 10px;
+      }
+      
+      .contact-buttons { flex-direction: column; }
+      .contact-btn { width: 100%; justify-content: center; }
+      
+      .section-title { font-size: 1.8rem; }
+    }
+
+    @media (max-width: 500px) {
+      .header { padding: 25px 16px; }
+      .cta-section { padding: 30px 16px; }
+      .feature-card { padding: 20px 16px; }
+    }
+
+    /* Animation delays for staggered loading */
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.2s; }
+    .feature-card:nth-child(3) { animation-delay: 0.3s; }
+    .feature-card:nth-child(4) { animation-delay: 0.4s; }
+    .feature-card:nth-child(5) { animation-delay: 0.5s; }
+    .feature-card:nth-child(6) { animation-delay: 0.6s; }
+    .feature-card:nth-child(7) { animation-delay: 0.7s; }
+    .feature-card:nth-child(8) { animation-delay: 0.8s; }
+  </style>
+</head>
+<body>
+  <div class="floating-elements">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+
+  <div class="main-container">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="logo-container">
+        <div class="logo-circle"></div>
+        <img src="rvm.png" alt="River Valley Mentors logo" class="logo-mem" loading="lazy">
+        <p class="logo-location">Edmonton</p>
+      </div>
+      
+      <div class="location-badge">📍 Edmonton, Alberta</div>
+      <h1>RivVal Member Portal</h1>
+      <p class="subtitle">Your personalized learning hub with exclusive tools and resources</p>
+      <div class="launch-status">🚀 Now Available to Members</div>
+      
+      <div class="progress-section">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <p class="progress-text">Platform Ready: 85% Complete</p>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-container">
+      <h2 class="section-title">Powerful Features for Student Success</h2>
+      <p class="section-subtitle">Everything students and parents need to track progress, stay organized, and achieve academic excellence</p>
+      
+      <div class="features-grid">
+        <!-- Available Features -->
+        <div class="feature-card">
+          <div class="available-tag">Live</div>
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Real-Time Grade Tracking</div>
+          <div class="feature-description">
+            Monitor your academic progress with live grade updates and detailed performance analytics.
+          </div>
+          <ul class="feature-benefits">
+            <li>Instant grade notifications</li>
+            <li>Subject-wise performance graphs</li>
+            <li>Improvement trend analysis</li>
+            <li>Parent dashboard access</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="available-tag">Live</div>
+          <div class="feature-icon">📅</div>
+          <div class="feature-title">Smart Session Booking</div>
+          <div class="feature-description">
+            Book, reschedule, and manage tutoring sessions with our intelligent scheduling system.
+          </div>
+          <ul class="feature-benefits">
+            <li>24/7 online booking</li>
+            <li>Tutor availability calendar</li>
+            <li>Automatic reminders</li>
+            <li>Easy rescheduling options</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="available-tag">Live</div>
+          <div class="feature-icon">💬</div>
+          <div class="feature-title">Direct Tutor Communication</div>
+          <div class="feature-description">
+            Stay connected with your tutors through our secure messaging platform and quick help requests.
+          </div>
+          <ul class="feature-benefits">
+            <li>Instant messaging with tutors</li>
+            <li>Photo sharing for homework help</li>
+            <li>Session notes and feedback</li>
+            <li>Parent-tutor communication</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="available-tag">Live</div>
+          <div class="feature-icon">📚</div>
+          <div class="feature-title">Digital Resource Library</div>
+          <div class="feature-description">
+            Access thousands of practice problems, worksheets, and study guides tailored to Alberta curriculum.
+          </div>
+          <ul class="feature-benefits">
+            <li>Alberta curriculum aligned</li>
+            <li>Grade-specific resources</li>
+            <li>Practice tests and quizzes</li>
+            <li>Video explanations</li>
+          </ul>
+        </div>
+
+        <!-- Coming Soon Features -->
+        <div class="feature-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">AI-Powered Goal Setting</div>
+          <div class="feature-description">
+            Set SMART academic goals with AI recommendations based on your learning patterns and progress.
+          </div>
+          <ul class="feature-benefits">
+            <li>Personalized goal recommendations</li>
+            <li>Progress milestone tracking</li>
+            <li>Achievement celebrations</li>
+            <li>Parent progress reports</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">Gamified Learning Experience</div>
+          <div class="feature-description">
+            Earn points, badges, and certificates as you complete assignments and reach academic milestones.
+          </div>
+          <ul class="feature-benefits">
+            <li>Learning streak rewards</li>
+            <li>Subject mastery badges</li>
+            <li>Monthly leaderboards</li>
+            <li>Achievement certificates</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="feature-icon">📈</div>
+          <div class="feature-title">Predictive Analytics</div>
+          <div class="feature-description">
+            Get insights into future performance and receive early warnings about potential academic challenges.
+          </div>
+          <ul class="feature-benefits">
+            <li>Grade prediction models</li>
+            <li>Risk assessment alerts</li>
+            <li>Intervention recommendations</li>
+            <li>Success probability tracking</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="feature-icon">👥</div>
+          <div class="feature-title">Study Group Coordinator</div>
+          <div class="feature-description">
+            Connect with other RivVal students for collaborative learning and peer study sessions.
+          </div>
+          <ul class="feature-benefits">
+            <li>Peer matching system</li>
+            <li>Virtual study rooms</li>
+            <li>Group project tools</li>
+            <li>Collaborative note sharing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="cta-section">
+      <h2 class="cta-title">Ready to Transform Your Learning Experience?</h2>
+      <p class="cta-description">
+        Join hundreds of Edmonton students and families who are already achieving academic excellence with RivVal's comprehensive tutoring platform.
+      </p>
+      
+      <div class="contact-buttons">
+        <a href="mailto:rivervalleymentors@gmail.com?subject=Member Portal Access Request&body=Hi RivVal Team,%0A%0AI'm interested in accessing the member portal and learning more about your tutoring services.%0A%0AStudent Name: %0AGrade Level: %0ASubjects of Interest: %0APhone Number: %0A%0APlease contact me to discuss enrollment options.%0A%0AThanks!" 
+           class="contact-btn btn-primary">
+          📧 Get Member Access
+        </a>
+        
+        <a href="tel:+15879009876" class="contact-btn btn-secondary">
+          📞 Call (587) 900-9876
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Enhanced animations and interactions
+    document.addEventListener('DOMContentLoaded', function() {
+      // Stagger animation for feature cards
+      const cards = document.querySelectorAll('.feature-card');
+      
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Array.from(cards).indexOf(entry.target);
+            setTimeout(() => {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }, index * 150); // Stagger the animations
+          }
+        });
+      }, observerOptions);
+      
+      // Set initial state and observe cards
+      cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        cardObserver.observe(card);
+      });
+
+      // Add click tracking for analytics (placeholder)
+      const buttons = document.querySelectorAll('.contact-btn');
+      buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          // Track button clicks (you can integrate with Google Analytics here)
+          console.log(`Button clicked: ${this.textContent.trim()}`);
+        });
+      });
+
+      // Smooth scroll for any internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+
+    // Add some dynamic content updates
+    function updateProgress() {
+      const progressText = document.querySelector('.progress-text');
+      const progressFill = document.querySelector('.progress-fill');
+      
+      // Simulate progress updates (you can replace with real data)
+      const currentProgress = Math.min(85 + Math.floor(Math.random() * 5), 95);
+      progressFill.style.width = currentProgress + '%';
+      progressText.textContent = `Platform Ready: ${currentProgress}% Complete`;
+    }
+
+    // Update progress every 30 seconds (optional dynamic feature)
+    // setInterval(updateProgress, 30000);
+  </script>
+</body>
+</html>
