@@ -111,18 +111,35 @@
       background: linear-gradient(90deg, var(--primary-green), var(--accent-green), var(--sage-green));
     }
 
+    .logo-container {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto 24px;
+    }
+
+    .logo-circle {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #87CEEB 0%, #4A90E2 50%, #2E86AB 100%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      box-shadow: 0 8px 32px rgba(135, 206, 235, 0.4);
+      animation: gentle-pulse 3s ease-in-out infinite;
+    }
+
     .logo-mem {
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      margin: 0 auto 24px;
-      background: var(rgba(162, 55, 55, 0.1));
-      box-shadow: 0 8px 24px rgba(73, 90, 45, 0.15);
       object-fit: cover;
-      animation: gentle-pulse 3s ease-in-out infinite;
       display: block;
       position: relative;
-      bottom: 2px;
+      z-index: 2;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
     @keyframes gentle-pulse {
@@ -384,9 +401,12 @@
 
   <div class="main-container">
     <div class="container">
-      <img src="rvm.png" alt="River Valley Mentors logo" class="logo-mem" loading="lazy">
-      <h1>Members Area</h1>
-      <div class="badge">🚀 Coming Soon</div>
+      <div class="logo-container">
+        <div class="logo-circle"></div>
+        <img src="rvm.png" alt="River Valley Mentors logo" class="logo-mem" loading="lazy">
+      </div>
+      <h1>RivVal's Base</h1>
+      <div class="badge">🚀 Launching Soon</div>
       
       <p class="subtitle">
         We're building something special! An exclusive hub for River Valley Mentors members 

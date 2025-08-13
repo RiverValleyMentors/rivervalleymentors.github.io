@@ -343,6 +343,48 @@
             outline-offset: 2px;
         }
 
+        .base-button {
+            background: linear-gradient(135deg, var(--premium-gold) 0%, #f4d03f 50%, #d4af37 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .base-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .base-button:hover::before {
+            left: 100%;
+        }
+
+        .base-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+        }
+
+        .base-button:focus {
+            outline: 3px solid var(--premium-gold);
+            outline-offset: 2px;
+        }
+
         /* What to Expect Section */
         .expectations {
             padding: 60px 0;
@@ -1082,6 +1124,10 @@
                     </div>
                     
                     <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" target="_blank">Book Your FREE 15-Minute Intro Session</a>
+                    
+                    <div style="margin-top: 20px;">
+                        <a href="members.html" class="base-button"> Already a RivVal Member?</a>
+                    </div>
                 </div>
             </div>
         </section>
