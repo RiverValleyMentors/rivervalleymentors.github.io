@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /members.html
 
-Sitemap: https://rivervalleymentors.github.io/sitemap.xml
+Sitemap: https://rivervalleymentors.ca/sitemap.xml
