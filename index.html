@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>River Valley Mentors - Math & English Tutoring | Edmonton</title>
+    <meta name="description" content="Professional tutoring services in Edmonton. Math and English tutoring for K-12 students, diploma exam prep, and university preparation by a University of Alberta student.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2d5a5a;
+            --accent-green: #4a7c59;
+            --light-green: #7a9b7e;
+            --cream: #f5f1e8;
+            --warm-cream: #ede5d3;
+            --text-dark: #2c2c2c;
+            --text-light: #666;
+            --premium-gold: #d4af37;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(45, 90, 90, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: var(--warm-cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-green);
+            font-size: 14px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--cream) 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--light-green) 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 124, 89, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.6);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 60px;
+            font-weight: 600;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            background: var(--cream);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(45, 90, 90, 0.15);
+        }
+
+        .service-card.premium {
+            border-color: var(--premium-gold);
+            background: linear-gradient(135deg, #fefdf8 0%, #f9f7ee 100%);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .service-icon.premium {
+            background: var(--premium-gold);
+        }
+
+        .service-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .premium-badge {
+            background: var(--premium-gold);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        /* Packages Section */
+        .packages {
+            padding: 80px 0;
+            background: var(--warm-cream);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .package-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(45, 90, 90, 0.1);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(45, 90, 90, 0.2);
+        }
+
+        .package-card.featured {
+            border: 3px solid var(--accent-green);
+        }
+
+        .package-card.excellence {
+            border: 3px solid var(--premium-gold);
+            background: linear-gradient(135deg, #fefdf8 0%, #f9f7ee 100%);
+        }
+
+        .package-badge {
+            background: var(--accent-green);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .package-badge.excellence {
+            background: var(--premium-gold);
+        }
+
+        .package-card h3 {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .package-features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .package-features li::before {
+            content: "✓";
+            color: var(--accent-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .package-features li.bonus {
+            color: var(--premium-gold);
+            font-weight: 600;
+        }
+
+        .package-features li.bonus::before {
+            content: "🎁";
+            color: var(--premium-gold);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 250px;
+            height: 250px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: var(--primary-green);
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .about-text h2 {
+            color: var(--primary-green);
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .credentials {
+            background: var(--cream);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(45, 90, 90, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: var(--primary-green);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            background: white;
+            color: var(--primary-green);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--primary-green);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: var(--accent-green);
+        }
+
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Success Stories */
+        .success-stories {
+            padding: 80px 0;
+            background: var(--warm-cream);
+        }
+
+        .success-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .success-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(45, 90, 90, 0.1);
+            text-align: center;
+        }
+
+        .success-metric {
+            font-size: 3rem;
+            color: var(--accent-green);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .success-label {
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Pricing Display */
+        .pricing-badge {
+            background: var(--accent-green);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .package-card .pricing-badge {
+            background: var(--primary-green);
+        }
+
+        .package-card.featured .pricing-badge {
+            background: var(--accent-green);
+        }
+
+        .package-card.excellence .pricing-badge {
+            background: var(--premium-gold);
+        }
+
+        .savings-highlight {
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .savings-highlight.excellence {
+            color: var(--premium-gold);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 500px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            color: var(--light-green);
+            margin-bottom: 15px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-green);
+        }
+
+        /* Coming Soon Badge */
+        .coming-soon {
+            background: var(--text-light);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        /* Referral Section */
+        .referral-info {
+            background: var(--light-green);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .referral-info h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .referral-info p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .referral-button {
+            background: white;
+            color: var(--light-green);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .referral-button:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Interactive elements */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo-section">
+                <div class="logo-placeholder">LOGO</div>
+                <div>
+                    <h2>River Valley Mentors</h2>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">Edmonton Area Tutoring</p>
+                </div>
+            </div>
+                            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Excel in Math & English</h1>
+                <p class="hero-subtitle">Professional tutoring with proven results. University of Alberta student with professional experience creating personalized learning plans that help students excel in their academic journey.</p>
+                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" target="_blank">Book Your FREE 15-Minute Intro Session</a>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">Our Tutoring Services</h2>
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">📊</div>
+                        <h3>Math Tutoring</h3>
+                        <p>From basic arithmetic to advanced calculus. Algebra, geometry, statistics, and more. All levels from elementary through high school.</p>
+                        <div class="pricing-badge">$45/session</div>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">📚</div>
+                        <h3>English & Language Arts</h3>
+                        <p>Reading comprehension, writing skills, grammar, literature analysis, and essay composition. Build strong communication skills.</p>
+                        <div class="pricing-badge">$45/session</div>
+                    </div>
+                    <div class="service-card premium fade-in">
+                        <div class="service-icon premium">🎓</div>
+                        <h3>Diploma Exam Prep<span class="premium-badge">Premium</span></h3>
+                        <p>Focused preparation for Alberta diploma exams. Practice tests, study strategies, and confidence building for success.</p>
+                        <div class="pricing-badge">$55/session</div>
+                    </div>
+                    <div class="service-card premium fade-in">
+                        <div class="service-icon premium">🏛️</div>
+                        <h3>University Preparation<span class="premium-badge">Premium</span></h3>
+                        <p>Get ready for post-secondary success. Study skills, academic writing, and transition support from a current university student.</p>
+                        <div class="pricing-badge">$55/session</div>
+                    </div>
+                </div>
+
+                <div class="referral-info">
+                    <h3>🎁 Refer a Friend & Both Save!</h3>
+                    <p>When you refer a friend, you get $25 credit toward your next session and they get $20 off their first package!</p>
+                    <a href="mailto:rivervalleymentors@gmail.com?subject=Friend Referral" class="referral-button">Refer a Friend</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="packages" class="packages">
+            <div class="container">
+                <h2 class="section-title">Choose Your Learning Package</h2>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <h3>Drop-In Sessions</h3>
+                        <div class="pricing-badge">$45/session</div>
+                        <p style="font-size: 1.1rem; color: var(--text-light); margin: 25px 0;">Flexible tutoring when you need it</p>
+                        <ul class="package-features">
+                            <li>Book individual sessions as needed</li>
+                            <li>Online via Google Meets</li>
+                            <li>Subject-specific focus</li>
+                            <li>Homework help & concept review</li>
+                            <li>Flexible scheduling</li>
+                            <li>Perfect for test prep or specific topics</li>
+                        </ul>
+                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 1rem; padding: 12px 25px;" target="_blank">Book Now</a>
+                    </div>
+                    
+                    <div class="package-card featured">
+                        <div class="package-badge">Most Popular</div>
+                        <h3>Growth Package</h3>
+                        <div class="pricing-badge">$40/session (12 sessions = $480)</div>
+                        <p style="font-size: 1.1rem; margin: 25px 0;"><span class="savings-highlight">Save $60!</span> Consistent weekly sessions</p>
+                        <ul class="package-features">
+                            <li>Personalized progress reports & tracking</li>
+                            <li>12 pre-booked tutoring sessions</li>
+                            <li>Consistent weekly time slot</li>
+                            <li>Customized lesson plans with digital tools</li>
+                            <li>Time management & study strategy mentoring</li>
+                            <li>Priority booking access</li>
+                            <li>Parent progress updates available</li>
+                        </ul>
+                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 1rem; padding: 12px 25px;" target="_blank">Get Started</a>
+                    </div>
+
+                    <div class="package-card excellence">
+                        <div class="package-badge excellence">Maximum Value</div>
+                        <h3>Excellence Package</h3>
+                        <div class="pricing-badge">$38/session (24 sessions = $912)</div>
+                        <p style="font-size: 1.1rem; margin: 25px 0;"><span class="savings-highlight excellence">Save $168!</span> Academic mastery program</p>
+                        <ul class="package-features">
+                            <li>All Growth Package benefits included</li>
+                            <li>24 pre-booked tutoring sessions</li>
+                            <li class="bonus">BONUS: 2 additional sessions FREE!</li>
+                            <li>Intensive diploma exam preparation</li>
+                            <li>University transition planning</li>
+                            <li>Custom study plan creation</li>
+                            <li>Priority scheduling & support</li>
+                            <li>Quarterly parent consultation calls</li>
+                        </ul>
+                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 1rem; padding: 12px 25px;" target="_blank">Start Excellence</a>
+                    </div>
+                    
+                    <div class="package-card">
+                        <h3>Group Sessions <span class="coming-soon">Coming Soon</span></h3>
+                        <div class="pricing-badge">$30/session</div>
+                        <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 25px;">Small group learning at local libraries</p>
+                        <ul class="package-features">
+                            <li>2-3 students per group</li>
+                            <li>In-person at Edmonton libraries</li>
+                            <li>Subject-specific groups</li>
+                            <li>Collaborative learning environment</li>
+                            <li>90-minute sessions</li>
+                            <li>More affordable option</li>
+                        </ul>
+                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 1rem; padding: 12px 25px;" target="_blank">Book Free Intro</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">👨‍🎓</div>
+                    <div class="about-text">
+                        <h2>Professional Tutoring with Proven Results</h2>
+                        <p>As a University of Alberta Economics student with professional tutoring experience, I bring both academic excellence and proven teaching skills to help you succeed.</p>
+                        
+                        <p>My approach combines personalized lesson plans with effective study strategies. Having worked with students across diverse grade levels, I understand how to adapt teaching methods to match each student's unique learning style.</p>
+                        
+                        <div class="credentials">
+                            <h4 style="color: var(--primary-green); margin-bottom: 10px;">Qualifications & Experience</h4>
+                            <p>🎓 University of Alberta Economics Student (Expected 2025)</p>
+                            <p>📚 Professional tutoring experience with students K-12</p>
+                            <p>📈 Proven track record creating personalized progress reports</p>
+                            <p>💻 Expert in educational technology and digital learning tools</p>
+                            <p>🎯 Specialized in time management and academic success strategies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="success-stories">
+            <div class="container">
+                <h2 class="section-title">Proven Results</h2>
+                <div class="success-grid">
+                    <div class="success-card fade-in">
+                        <div class="success-metric">15+</div>
+                        <div class="success-label">Students Tutored</div>
+                        <p>Professional tutoring experience helping students across K-12 grade levels excel in math and English.</p>
+                    </div>
+                    <div class="success-card fade-in">
+                        <div class="success-metric">1+</div>
+                        <div class="success-label">Average Grade Improvement</div>
+                        <p>Students consistently improve by at least one letter grade within their first semester of regular tutoring.</p>
+                    </div>
+                    <div class="success-card fade-in">
+                        <div class="success-metric">90%</div>
+                        <div class="success-label">Student Satisfaction</div>
+                        <p>Based on feedback from students and parents who report improved confidence and study habits.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Students & Parents Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial fade-in">
+                        <p class="testimonial-text">"My tutor helped me go from failing algebra to getting 82% on my final exam. The teaching approach just makes sense!"</p>
+                        <p class="testimonial-author">— Grade 10 Student, Edmonton</p>
+                    </div>
+                    <div class="testimonial fade-in">
+                        <p class="testimonial-text">"My daughter's English grades improved from C+ to A- in one semester. The personalized approach really works."</p>
+                        <p class="testimonial-author">— Parent, Edmonton</p>
+                    </div>
+                    <div class="testimonial fade-in">
+                        <p class="testimonial-text">"The progress reports are amazing - I can see exactly where my son is improving and what we need to work on next."</p>
+                        <p class="testimonial-author">— Parent, Sherwood Park</p>
+                    </div>
+                    <div class="testimonial fade-in">
+                        <p class="testimonial-text">"I learned study techniques that helped me not just in math, but in all my subjects. University prep was so helpful!"</p>
+                        <p class="testimonial-author">— Grade 12 Student, Edmonton</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do online tutoring sessions work?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We use Google Meets for all online sessions. You'll receive a meeting link before each session. All you need is a computer, tablet, or phone with internet access. Digital tools are used to share notes and work through problems together in real-time.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What's the difference between packages?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Drop-in sessions offer flexibility at $45 each. The Growth Package (12 sessions) saves you $60 and includes progress tracking. The Excellence Package (24 sessions) saves $168, includes 2 bonus sessions, and offers premium features like custom study plans and quarterly parent consultations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What if my child needs help in multiple subjects?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Both math and English tutoring are available, so we can work on both subjects within the same session or alternate between subjects across different sessions. A customized plan is created based on each student's specific needs and priorities.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How does the referral program work?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>When you refer a friend who books their first package, you receive a $25 credit toward your next session and your friend gets $20 off their first package. Just mention the referral when they book their intro session!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do you track progress?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Personalized progress reports track improvement in specific skills and concepts. Parents receive regular updates showing their child's strengths, areas for improvement, and recommendations for continued success.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you help with homework or just teach concepts?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Both! Help is provided with specific homework assignments and underlying concepts are taught to ensure students truly understand the material. The goal is to help students become independent learners who can tackle new problems confidently.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What makes you different from other tutors?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>As a current university student, there's understanding of recent curriculum changes and effective study techniques. Professional tutoring experience, combined with an economics background, provides a unique perspective on both academic success and real-world application of skills.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Can I pay for packages in installments?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! The Growth Package can be split into 3 payments of $165, and the Excellence Package can be split into 4 payments of $240. Contact us to set up a payment plan that works for your family.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How flexible is the scheduling?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Very flexible! Scheduling works around students' school schedules, extracurricular activities, and family commitments. Package students get consistent weekly slots, but timing can be adjusted as needed. Drop-in sessions can be booked with short notice.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Ready to Get Started?</h2>
+                <p>Book your free 15-minute intro session to discuss your learning goals and see if we're a good fit. No pressure, just a friendly chat about how I can help you succeed.</p>
+                <div class="contact-buttons">
+                    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="contact-button" target="_blank">📅 Book Free Intro Session</a>
+                    <a href="mailto:rivervalleymentors@gmail.com" class="contact-button">✉️ Email Us</a>
+                    <a href="#" class="contact-button" onclick="alert('Please use the booking link or email for initial contact. Phone consultations available after booking.')">📞 Contact Info</a>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 20px; color: white;">Quick Contact Form</h3>
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">Grade Level:</label>
+                            <input type="text" id="grade" name="grade" placeholder="e.g., Grade 10, University">
+                        </div>
+                        <div class="form-group">
+                            <label for="subjects">Subjects Needed:</label>
+                            <input type="text" id="subjects" name="subjects" placeholder="e.g., Math, English, Both">
+                        </div>
+                        <div class="form-group">
+                            <label for="package">Interested Package:</label>
+                            <select id="package" name="package">
+                                <option value="">Select a package</option>
+                                <option value="drop-in">Drop-In Sessions ($45/session)</option>
+                                <option value="growth">Growth Package (12 sessions - Save $60!)</option>
+                                <option value="excellence">Excellence Package (24 sessions - Save $168!)</option>
+                                <option value="group">Group Sessions (Coming Soon)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" placeholder="Tell me about your learning goals or any specific challenges..."></textarea>
+                        </div>
+                        <button type="submit" class="contact-button" style="width: 100%; margin-top: 10px;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>River Valley Mentors</h4>
+                    <p>Personalized Math & English tutoring in the Edmonton area.</p>
+                    <p style="margin-top: 15px;"><strong>Refer a friend and both save!</strong></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <p>Math Tutoring - $45/session</p>
+                    <p>English & Language Arts - $45/session</p>
+                    <p>Diploma Exam Prep - $55/session</p>
+                    <p>University Preparation - $55/session</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Packages</h4>
+                    <p>Growth Package - Save $60</p>
+                    <p>Excellence Package - Save $168</p>
+                    <p>Group Sessions <span class="coming-soon">Soon</span></p>
+                    <p>Payment plans available</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Edmonton, Alberta</p>
+                    <p><a href="mailto:rivervalleymentors@gmail.com">rivervalleymentors@gmail.com</a></p>
+                    <p>Phone consultations available after booking</p>
+                </div>
+            </div>
+            <p style="text-align: center; padding-top: 20px; border-top: 1px solid #555;">&copy; 2025 River Valley Mentors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu functionality could be added here
+        // Contact form handling could be added here
+        
+        // FAQ Toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span:last-child');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(faq => {
+                if (faq !== answer) {
+                    faq.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.faq-question span:last-child').forEach(iconEl => {
+                if (iconEl !== icon) {
+                    iconEl.textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+
+        // Contact form handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const grade = formData.get('grade');
+            const subjects = formData.get('subjects');
+            const package = formData.get('package');
+            const message = formData.get('message');
+            
+            // Create mailto link with form data
+            const subject = encodeURIComponent('Tutoring Inquiry from ' + name);
+            const body = encodeURIComponent(
+                `Hi,\n\nI'm interested in tutoring services.\n\n` +
+                `Name: ${name}\n` +
+                `Email: ${email}\n` +
+                `Grade Level: ${grade}\n` +
+                `Subjects: ${subjects}\n` +
+                `Package Interest: ${package}\n` +
+                `Message: ${message}\n\n` +
+                `Please let me know about availability and next steps.\n\nThanks!`
+            );
+            
+            window.location.href = `mailto:rivervalleymentors@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Show confirmation
+            alert('Opening your email client with the message. If it doesn\'t work, please email us directly at rivervalleymentors@gmail.com');
+        }
+    </script>
+</body>
+</html>
