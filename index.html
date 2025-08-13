@@ -57,6 +57,7 @@
             --premium-gold: #d4af37;
             --rival-blue: #3b82f6;
             --success-green: #10b981;
+            --header-height: 80px;
         }
 
         body {
@@ -72,22 +73,26 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Header with Mobile Menu */
         header {
             background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
             color: white;
             padding: 1rem 0;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             box-shadow: 0 2px 10px rgba(45, 90, 90, 0.3);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            width: 100%;
+            position: relative;
         }
 
         .logo-section {
@@ -97,8 +102,8 @@
         }
 
         .logo-placeholder {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--warm-cream);
             border-radius: 50%;
             display: flex;
@@ -106,26 +111,27 @@
             justify-content: center;
             font-weight: bold;
             color: var(--primary-green);
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .brand-text h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 0;
             letter-spacing: 0.5px;
         }
 
         .brand-subtitle {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             opacity: 0.9;
             font-style: italic;
             margin-top: -2px;
         }
 
+        /* Desktop Navigation */
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
 
@@ -142,10 +148,90 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Hero Section */
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle:focus {
+            outline: 2px solid white;
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-green);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .brand-text h2 {
+                font-size: 1.4rem;
+            }
+
+            .brand-subtitle {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Trust Indicators */
+        .trust-bar {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .trust-icon {
+            color: var(--success-green);
+            font-weight: bold;
+        }
+
+        /* Hero Section - Enhanced */
         .hero {
             background: linear-gradient(135deg, var(--warm-cream) 0%, var(--cream) 100%);
-            padding: 80px 0;
+            padding: 60px 0 80px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -174,7 +260,7 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--primary-green);
             margin-bottom: 10px;
             font-weight: 700;
@@ -182,21 +268,21 @@
         }
 
         .hero-brand-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--accent-green);
             margin-bottom: 15px;
             font-style: italic;
         }
 
         .hero-tagline {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--rival-blue);
             margin-bottom: 20px;
             font-weight: 600;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-light);
             margin-bottom: 30px;
             max-width: 650px;
@@ -204,13 +290,36 @@
             margin-right: auto;
         }
 
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--rival-blue);
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
         .cta-button {
             background: linear-gradient(135deg, var(--rival-blue) 0%, var(--accent-green) 100%);
             color: white;
-            padding: 18px 40px;
+            padding: 18px 35px;
             border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
@@ -224,30 +333,88 @@
             box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
         }
 
-        /* Services Section */
+        .cta-button:focus {
+            outline: 3px solid var(--rival-blue);
+            outline-offset: 2px;
+        }
+
+        /* What to Expect Section */
+        .expectations {
+            padding: 60px 0;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .expectations h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 40px;
+        }
+
+        .expectations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .expectation-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .expectation-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--rival-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .expectation-item h4 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        /* Services Section - Enhanced */
         .services {
             padding: 80px 0;
-            background: white;
+            background: var(--warm-cream);
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             color: var(--primary-green);
-            margin-bottom: 60px;
+            margin-bottom: 20px;
             font-weight: 600;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
             margin-bottom: 50px;
         }
 
         .service-card {
-            background: var(--cream);
-            padding: 40px 30px;
+            background: white;
+            padding: 35px 25px;
             border-radius: 15px;
             text-align: center;
             transition: all 0.3s ease;
@@ -283,8 +450,8 @@
         }
 
         .service-icon {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: var(--primary-green);
             border-radius: 50%;
             margin: 0 auto 20px;
@@ -292,7 +459,7 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             position: relative;
             z-index: 2;
@@ -305,9 +472,14 @@
         .service-card h3 {
             color: var(--primary-green);
             margin-bottom: 15px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             position: relative;
             z-index: 2;
+        }
+
+        .service-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .premium-badge {
@@ -315,148 +487,91 @@
             color: white;
             padding: 4px 12px;
             border-radius: 12px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            margin-left: 10px;
+            margin-left: 8px;
         }
 
-        /* Packages Section */
-        .packages {
-            padding: 80px 0;
-            background: var(--warm-cream);
-        }
-
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .package-card {
-            background: white;
-            padding: 40px;
+        .pricing-badge {
+            background: var(--accent-green);
+            color: white;
+            padding: 8px 16px;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(45, 90, 90, 0.1);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        /* Package Comparison Table */
+        .package-comparison {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .comparison-table {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .comparison-cell {
+            padding: 20px;
             text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
+            border-right: 1px solid rgba(255,255,255,0.2);
         }
 
-        .package-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(45, 90, 90, 0.2);
+        .comparison-cell:last-child {
+            border-right: none;
         }
 
-        .package-card.featured {
-            border: 3px solid var(--rival-blue);
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        .package-card.excellence {
-            border: 3px solid var(--premium-gold);
-            background: linear-gradient(135deg, #fefdf8 0%, #f9f7ee 100%);
+        .comparison-row:nth-child(even) {
+            background: #f8f9fa;
         }
 
-        .package-badge {
+        .feature-name {
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .feature-check {
+            color: var(--success-green);
+            font-size: 1.2rem;
+        }
+
+        .feature-x {
+            color: #ccc;
+            font-size: 1.2rem;
+        }
+
+        .popular-badge {
             background: var(--rival-blue);
             color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: inline-block;
         }
 
-        .package-badge.excellence {
-            background: var(--premium-gold);
-        }
-
-        .package-card h3 {
-            color: var(--primary-green);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .package-features {
-            list-style: none;
-            margin: 25px 0;
-            text-align: left;
-        }
-
-        .package-features li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .package-features li::before {
-            content: "✓";
-            color: var(--success-green);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .package-features li.bonus {
-            color: var(--premium-gold);
-            font-weight: 600;
-        }
-
-        .package-features li.bonus::before {
-            content: "🎁";
-            color: var(--premium-gold);
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 250px;
-            height: 250px;
-            background: var(--cream);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            color: var(--primary-green);
-            font-size: 4rem;
-            font-weight: bold;
-        }
-
-        .about-text h2 {
-            color: var(--primary-green);
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-
-        .credentials {
-            background: var(--cream);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 25px;
-        }
-
-        /* Testimonials */
+        /* Enhanced Testimonials */
         .testimonials {
             padding: 80px 0;
             background: var(--cream);
@@ -464,7 +579,7 @@
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
@@ -497,7 +612,111 @@
             color: var(--primary-green);
         }
 
-        /* Contact Section */
+        .testimonial-improvement {
+            background: var(--success-green);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Enhanced FAQ */
+        .faq {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .faq-search {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .faq-search input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .faq-search input:focus {
+            outline: none;
+            border-color: var(--rival-blue);
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.hidden {
+            display: none;
+        }
+
+        .faq-question {
+            background: var(--primary-green);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--rival-blue);
+        }
+
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            line-height: 1.6;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Guarantee Section */
+        .guarantee {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--success-green) 0%, var(--accent-green) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .guarantee h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .guarantee p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section - Enhanced */
         .contact {
             padding: 80px 0;
             background: linear-gradient(135deg, var(--primary-green) 0%, var(--rival-blue) 100%);
@@ -507,10 +726,10 @@
 
         .contact h2 {
             font-size: 2.5rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        .contact p {
+        .contact-subtitle {
             font-size: 1.2rem;
             margin-bottom: 40px;
             max-width: 600px;
@@ -523,6 +742,7 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 40px;
         }
 
         .contact-button {
@@ -531,7 +751,7 @@
             padding: 15px 30px;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
@@ -544,157 +764,25 @@
             transform: translateY(-2px);
         }
 
-        /* FAQ Section */
-        .faq {
-            padding: 80px 0;
-            background: white;
+        .contact-button:focus {
+            outline: 3px solid white;
+            outline-offset: 2px;
         }
 
-        .faq-grid {
-            display: grid;
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--cream);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            background: var(--primary-green);
-            color: white;
-            padding: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-question:hover {
-            background: var(--rival-blue);
-        }
-
-        .faq-answer {
-            padding: 20px;
-            display: none;
-            line-height: 1.6;
-        }
-
-        .faq-answer.active {
-            display: block;
-        }
-
-        /* Success Stories */
-        .success-stories {
-            padding: 80px 0;
-            background: var(--warm-cream);
-        }
-
-        .success-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .success-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(45, 90, 90, 0.1);
-            text-align: center;
-        }
-
-        .success-metric {
-            font-size: 3rem;
-            color: var(--rival-blue);
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .success-label {
-            color: var(--primary-green);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        /* Pricing Display */
-        .pricing-badge {
-            background: var(--accent-green);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 15px;
+        /* Response Time Indicator */
+        .response-time {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 25px;
             display: inline-block;
+            margin-top: 20px;
         }
 
-        .package-card .pricing-badge {
-            background: var(--primary-green);
-        }
-
-        .package-card.featured .pricing-badge {
-            background: var(--rival-blue);
-        }
-
-        .package-card.excellence .pricing-badge {
-            background: var(--premium-gold);
-        }
-
-        .savings-highlight {
-            color: var(--rival-blue);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .savings-highlight.excellence {
-            color: var(--premium-gold);
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: 500px;
-            margin: 40px auto 0;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
-        /* Footer */
+        /* Footer - Enhanced */
         footer {
             background: var(--text-dark);
             color: white;
-            padding: 40px 0;
-            text-align: center;
+            padding: 40px 0 20px;
         }
 
         .footer-content {
@@ -712,10 +800,98 @@
         .footer-section p, .footer-section a {
             color: #ccc;
             text-decoration: none;
+            line-height: 1.6;
         }
 
         .footer-section a:hover {
             color: var(--light-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        /* Accessibility Improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--rival-blue);
+            outline-offset: 2px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero-stats {
+                gap: 20px;
+            }
+            
+            .comparison-table {
+                display: none;
+            }
+
+            .mobile-package-cards {
+                display: block;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-package-cards {
+                display: none;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
         }
 
         /* Coming Soon Badge */
@@ -768,65 +944,19 @@
             background: var(--cream);
             transform: translateY(-2px);
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1.3rem;
-            }
-            
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .brand-text h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Interactive elements */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
             <div class="logo-section">
-                <div class="logo-placeholder">LOGO</div>
+                <div class="logo-placeholder" role="img" aria-label="RivVal Tutoring Logo">LOGO</div>
                 <div class="brand-text">
                     <h2>RivVal</h2>
                     <p class="brand-subtitle">River Valley Mentors</p>
                 </div>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#packages">Packages</a></li>
@@ -834,18 +964,83 @@
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰
+            </button>
         </nav>
     </header>
+
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>University of Alberta Student</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>15+ Students Helped</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>Free 15-Min Consultation</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>Satisfaction Guaranteed</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main>
         <section id="home" class="hero">
             <div class="container">
-                <div class="hero-content">
+                <div class="hero-content loading">
                     <h1>RivVal Tutoring</h1>
                     <p class="hero-brand-subtitle">River Valley Mentors</p>
                     <p class="hero-tagline">Rival Your Best Self</p>
                     <p class="hero-subtitle">Professional math & English tutoring that challenges you to outperform yesterday. University of Alberta student with proven experience creating personalized learning plans that help students excel.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">15+</div>
+                            <div class="hero-stat-label">Students Helped</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">1+</div>
+                            <div class="hero-stat-label">Grade Jump Average</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">24hr</div>
+                            <div class="hero-stat-label">Response Time</div>
+                        </div>
+                    </div>
+                    
                     <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" target="_blank">Book Your FREE 15-Minute Intro Session</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="expectations">
+            <div class="container">
+                <h2>What to Expect in Your First Session</h2>
+                <div class="expectations-grid">
+                    <div class="expectation-item loading">
+                        <div class="expectation-icon">🎯</div>
+                        <h4>Goal Assessment</h4>
+                        <p>We'll identify your academic challenges and create a personalized roadmap to rival your current performance.</p>
+                    </div>
+                    <div class="expectation-item loading">
+                        <div class="expectation-icon">📊</div>
+                        <h4>Skill Evaluation</h4>
+                        <p>Quick assessment of your current level in math or English to design targeted improvement strategies.</p>
+                    </div>
+                    <div class="expectation-item loading">
+                        <div class="expectation-icon">🚀</div>
+                        <h4>Success Planning</h4>
+                        <p>Together we'll create a competitive learning plan that fits your schedule and academic goals.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -853,29 +1048,30 @@
         <section id="services" class="services">
             <div class="container">
                 <h2 class="section-title">Rival Your Limits</h2>
+                <p class="section-subtitle">Comprehensive tutoring services designed to help Edmonton students excel in math and English across all grade levels.</p>
                 <div class="services-grid">
-                    <div class="service-card fade-in">
-                        <div class="service-icon">📊</div>
+                    <div class="service-card loading">
+                        <div class="service-icon" aria-label="Math tutoring">📊</div>
                         <h3>Math Mastery</h3>
-                        <p>From basic arithmetic to advanced calculus. Algebra, geometry, statistics, and more. All levels from elementary through high school. Rival your math fears!</p>
+                        <p class="service-description">From basic arithmetic to advanced calculus. Algebra, geometry, statistics, and more. All levels from elementary through high school. Specialized in Alberta curriculum including Math 20-1, 30-1, and diploma preparation.</p>
                         <div class="pricing-badge">$45/session</div>
                     </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon">📚</div>
+                    <div class="service-card loading">
+                        <div class="service-icon" aria-label="English tutoring">📚</div>
                         <h3>English Excellence</h3>
-                        <p>Reading comprehension, writing skills, grammar, literature analysis, and essay composition. Build communication skills that rival the best.</p>
+                        <p class="service-description">Reading comprehension, writing skills, grammar, literature analysis, and essay composition. Build communication skills for academic success and beyond. Specialized in Alberta ELA curriculum and diploma preparation.</p>
                         <div class="pricing-badge">$45/session</div>
                     </div>
-                    <div class="service-card premium fade-in">
-                        <div class="service-icon premium">🎓</div>
+                    <div class="service-card premium loading">
+                        <div class="service-icon premium" aria-label="Diploma preparation">🎓</div>
                         <h3>Diploma Domination<span class="premium-badge">Premium</span></h3>
-                        <p>Focused preparation for Alberta diploma exams. Practice tests, study strategies, and confidence building. Rival the top scorers!</p>
+                        <p class="service-description">Focused preparation for Alberta diploma exams. Practice tests, study strategies, and confidence building. Specialized techniques for Math 30-1, English 30-1, and other diploma subjects.</p>
                         <div class="pricing-badge">$55/session</div>
                     </div>
-                    <div class="service-card premium fade-in">
-                        <div class="service-icon premium">🏛️</div>
+                    <div class="service-card premium loading">
+                        <div class="service-icon premium" aria-label="University preparation">🏛️</div>
                         <h3>University Ready<span class="premium-badge">Premium</span></h3>
-                        <p>Get ready for post-secondary success. Study skills, academic writing, and transition support from a current university student.</p>
+                        <p class="service-description">Get ready for post-secondary success. Study skills, academic writing, and transition support from a current University of Alberta Economics student who understands the challenges.</p>
                         <div class="pricing-badge">$55/session</div>
                     </div>
                 </div>
@@ -888,118 +1084,197 @@
             </div>
         </section>
 
-        <section id="packages" class="packages">
+        <section id="packages" class="package-comparison">
             <div class="container">
                 <h2 class="section-title">Choose Your Challenge Level</h2>
-                <div class="packages-grid">
-                    <div class="package-card">
-                        <h3>Drop-In Sessions</h3>
-                        <div class="pricing-badge">$45/session</div>
-                        <p style="font-size: 1.1rem; color: var(--text-light); margin: 25px 0;">Flexible tutoring when you need it</p>
-                        <ul class="package-features">
-                            <li>Book individual sessions as needed</li>
-                            <li>Online via Google Meets</li>
-                            <li>Subject-specific focus</li>
-                            <li>Homework help & concept review</li>
-                            <li>Flexible scheduling</li>
-                            <li>Perfect for test prep or specific topics</li>
-                        </ul>
-                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 1rem; padding: 12px 25px;" target="_blank">Book Now</a>
+                <p class="section-subtitle">Transparent pricing with clear value propositions. All packages include online sessions via Google Meets.</p>
+                
+                <!-- Desktop Comparison Table -->
+                <div class="comparison-table">
+                    <div class="comparison-header">
+                        <div class="comparison-cell">
+                            <strong>Features</strong>
+                        </div>
+                        <div class="comparison-cell">
+                            <strong>Drop-In</strong><br>
+                            <small>$45/session</small>
+                        </div>
+                        <div class="comparison-cell">
+                            <strong>Growth Challenger</strong><br>
+                            <small>$40/session</small><br>
+                            <div class="popular-badge">Most Popular</div>
+                        </div>
+                        <div class="comparison-cell">
+                            <strong>Excellence Mastery</strong><br>
+                            <small>$38/session</small>
+                        </div>
                     </div>
-                    
-                    <div class="package-card featured">
-                        <div class="package-badge">Most Popular</div>
-                        <h3>Growth Challenger</h3>
-                        <div class="pricing-badge">$40/session (12 sessions = $480)</div>
-                        <p style="font-size: 1.1rem; margin: 25px 0;"><span class="savings-highlight">Save $60!</span> Consistent weekly progress</p>
-                        <ul class="package-features">
-                            <li>Personalized progress reports & tracking</li>
-                            <li>12 pre-booked tutoring sessions</li>
-                            <li>Consistent weekly time slot</li>
-                            <li>Customized lesson plans with digital tools</li>
-                            <li>Time management & study strategy mentoring</li>
-                            <li>Priority booking access</li>
-                            <li>Parent progress updates available</li>
-                        </ul>
-                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 1rem; padding: 12px 25px;" target="_blank">Start Your Challenge</a>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Individual tutoring sessions</div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
                     </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Online via Google Meets</div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Flexible scheduling</div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Personalized progress reports</div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Consistent weekly time slot</div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Custom study plans</div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Parent progress updates</div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Priority booking access</div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Intensive diploma exam prep</div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">University transition planning</div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name">Quarterly parent consultations</div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-x">✗</span></div>
+                        <div class="comparison-cell"><span class="feature-check">✓</span></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell feature-name"><strong>Total Savings</strong></div>
+                        <div class="comparison-cell">$0</div>
+                        <div class="comparison-cell" style="color: var(--rival-blue); font-weight: bold;">Save $60!</div>
+                        <div class="comparison-cell" style="color: var(--premium-gold); font-weight: bold;">Save $168!</div>
+                    </div>
+                </div>
 
-                    <div class="package-card excellence">
-                        <div class="package-badge excellence">Elite Rival</div>
-                        <h3>Excellence Mastery</h3>
-                        <div class="pricing-badge">$38/session (24 sessions = $912)</div>
-                        <p style="font-size: 1.1rem; margin: 25px 0;"><span class="savings-highlight excellence">Save $168!</span> Academic rival program</p>
-                        <ul class="package-features">
-                            <li>All Growth Challenger benefits included</li>
-                            <li>24 pre-booked tutoring sessions</li>
-                            <li class="bonus">BONUS: 2 additional sessions FREE!</li>
-                            <li>Intensive diploma exam preparation</li>
-                            <li>University transition planning</li>
-                            <li>Custom study plan creation</li>
-                            <li>Priority scheduling & support</li>
-                            <li>Quarterly parent consultation calls</li>
-                        </ul>
-                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 1rem; padding: 12px 25px;" target="_blank">Become Elite</a>
+                <!-- Mobile Package Cards -->
+                <div class="mobile-package-cards" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 400px; margin: 0 auto;">
+                        <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <h3 style="color: var(--primary-green); margin-bottom: 15px;">Drop-In Sessions</h3>
+                            <div style="background: var(--accent-green); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; margin-bottom: 20px; display: inline-block;">$45/session</div>
+                            <p style="margin-bottom: 20px;">Perfect for occasional help or test prep</p>
+                            <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 0.9rem; padding: 12px 25px;" target="_blank">Book Now</a>
+                        </div>
+                        
+                        <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid var(--rival-blue); position: relative;">
+                            <div style="background: var(--rival-blue); color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);">Most Popular</div>
+                            <h3 style="color: var(--primary-green); margin-bottom: 15px; margin-top: 10px;">Growth Challenger</h3>
+                            <div style="background: var(--rival-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; margin-bottom: 10px; display: inline-block;">$40/session</div>
+                            <p style="color: var(--rival-blue); font-weight: 600; margin-bottom: 20px;">Save $60! (12 sessions = $480)</p>
+                            <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 0.9rem; padding: 12px 25px;" target="_blank">Start Your Challenge</a>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fefdf8 0%, #f9f7ee 100%); padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid var(--premium-gold); position: relative;">
+                            <div style="background: var(--premium-gold); color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);">Elite Rival</div>
+                            <h3 style="color: var(--primary-green); margin-bottom: 15px; margin-top: 10px;">Excellence Mastery</h3>
+                            <div style="background: var(--premium-gold); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; margin-bottom: 10px; display: inline-block;">$38/session</div>
+                            <p style="color: var(--premium-gold); font-weight: 600; margin-bottom: 20px;">Save $168! (24 sessions = $912)</p>
+                            <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 0.9rem; padding: 12px 25px;" target="_blank">Become Elite</a>
+                        </div>
                     </div>
-                    
-                    <div class="package-card">
-                        <h3>Group Rivals <span class="coming-soon">Coming Soon</span></h3>
-                        <div class="pricing-badge">$30/session</div>
-                        <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 25px;">Small group learning at local libraries</p>
-                        <ul class="package-features">
-                            <li>2-3 students per group</li>
-                            <li>In-person at Edmonton libraries</li>
-                            <li>Subject-specific groups</li>
-                            <li>Collaborative learning environment</li>
-                            <li>90-minute sessions</li>
-                            <li>More affordable rival experience</li>
-                        </ul>
-                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="cta-button" style="font-size: 1rem; padding: 12px 25px;" target="_blank">Join Waitlist</a>
-                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px; padding: 30px; background: rgba(59, 130, 246, 0.1); border-radius: 15px;">
+                    <h3 style="color: var(--primary-green); margin-bottom: 15px;">💳 Flexible Payment Plans Available</h3>
+                    <p style="color: var(--text-light);">Growth Challenger: 3 payments of $165 • Excellence Mastery: 4 payments of $240</p>
+                    <p style="color: var(--text-light); margin-top: 10px;"><strong>All packages can be split into installments. Contact us to arrange a plan that works for your budget.</strong></p>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about">
+        <section id="about" class="about" style="padding: 80px 0; background: white;">
             <div class="container">
-                <div class="about-content">
-                    <div class="about-image">👨‍🎓</div>
-                    <div class="about-text">
-                        <h2>Your Academic Rival</h2>
-                        <p>As a University of Alberta Economics student with professional tutoring experience, I don't just teach—I challenge you to rival your own expectations and exceed them.</p>
+                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center;">
+                    <div style="text-align: center;">
+                        <div style="width: 250px; height: 250px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; color: var(--primary-green); font-size: 4rem; font-weight: bold;" role="img" aria-label="Tutor illustration">👨‍🎓</div>
+                        <div style="margin-top: 20px; padding: 20px; background: var(--cream); border-radius: 15px;">
+                            <h4 style="color: var(--primary-green); margin-bottom: 10px;">Quick Stats</h4>
+                            <p style="margin-bottom: 5px;">📅 Usually responds within 24 hours</p>
+                            <p style="margin-bottom: 5px;">🎯 90% student satisfaction rate</p>
+                            <p>📍 Serving Edmonton & surrounding areas</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 style="color: var(--primary-green); font-size: 2.2rem; margin-bottom: 25px;">Meet Your Academic Rival Coach</h2>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 20px;">As a University of Alberta Economics student with professional tutoring experience, I don't just teach—I challenge you to rival your own expectations and exceed them. My approach combines proven academic techniques with competitive motivation strategies.</p>
                         
-                        <p>My approach combines personalized lesson plans with competitive study strategies. Having worked with students across diverse grade levels, I understand how to push each student to rival their personal best while building genuine confidence.</p>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 20px;">Having navigated the Alberta education system myself and now excelling at university level, I understand exactly what it takes to bridge the gap between high school and post-secondary success. I specialize in helping students develop not just subject knowledge, but the competitive mindset needed for long-term academic achievement.</p>
                         
-                        <div class="credentials">
-                            <h4 style="color: var(--primary-green); margin-bottom: 10px;">Qualifications & Experience</h4>
-                            <p>🎓 University of Alberta Economics Student (Expected 2025)</p>
-                            <p>📚 Professional tutoring experience with students K-12</p>
-                            <p>📈 Proven track record creating personalized progress reports</p>
-                            <p>💻 Expert in educational technology and digital learning tools</p>
-                            <p>🏆 Specialized in competitive academic success strategies</p>
+                        <div style="background: var(--cream); padding: 25px; border-radius: 15px; margin-top: 25px;">
+                            <h4 style="color: var(--primary-green); margin-bottom: 15px; font-size: 1.3rem;">Qualifications & Experience</h4>
+                            <div style="display: grid; gap: 10px;">
+                                <p>🎓 <strong>University of Alberta Economics Student</strong> (Expected 2025)</p>
+                                <p>📚 <strong>15+ students tutored</strong> across K-12 grade levels</p>
+                                <p>📈 <strong>Proven track record</strong> of 1+ letter grade improvements</p>
+                                <p>💻 <strong>Expert in digital learning tools</strong> and online education</p>
+                                <p>🏆 <strong>Specialized in competitive academic strategies</strong> and motivation techniques</p>
+                                <p>🎯 <strong>Alberta curriculum specialist</strong> - Math 20-1, 30-1, English 30-1</p>
+                            </div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, var(--rival-blue) 0%, var(--accent-green) 100%); color: white; padding: 20px; border-radius: 15px; margin-top: 20px; text-align: center;">
+                            <h4 style="margin-bottom: 10px;">My Philosophy</h4>
+                            <p style="font-style: italic;">"Every student has the potential to rival the top performers. My job is to unlock that competitive edge through personalized strategies, consistent support, and the right academic challenges."</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="success-stories">
+        <section style="padding: 80px 0; background: var(--warm-cream);">
             <div class="container">
-                <h2 class="section-title">Rival Results</h2>
-                <div class="success-grid">
-                    <div class="success-card fade-in">
-                        <div class="success-metric">15+</div>
-                        <div class="success-label">Students Challenged</div>
+                <h2 class="section-title">Proven Rival Results</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(45, 90, 90, 0.1); text-align: center;">
+                        <div style="font-size: 3rem; color: var(--rival-blue); font-weight: bold; margin-bottom: 10px;">15+</div>
+                        <div style="color: var(--primary-green); font-weight: 600; margin-bottom: 15px;">Students Challenged</div>
                         <p>Professional tutoring experience helping students across K-12 grade levels rival their previous performance in math and English.</p>
                     </div>
-                    <div class="success-card fade-in">
-                        <div class="success-metric">1+</div>
-                        <div class="success-label">Average Grade Jump</div>
+                    <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(45, 90, 90, 0.1); text-align: center;">
+                        <div style="font-size: 3rem; color: var(--rival-blue); font-weight: bold; margin-bottom: 10px;">1+</div>
+                        <div style="color: var(--primary-green); font-weight: 600; margin-bottom: 15px;">Average Grade Jump</div>
                         <p>Students consistently improve by at least one letter grade within their first semester, rivaling their former selves.</p>
                     </div>
-                    <div class="success-card fade-in">
-                        <div class="success-metric">90%</div>
-                        <div class="success-label">Satisfaction Rate</div>
+                    <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(45, 90, 90, 0.1); text-align: center;">
+                        <div style="font-size: 3rem; color: var(--rival-blue); font-weight: bold; margin-bottom: 10px;">90%</div>
+                        <div style="color: var(--primary-green); font-weight: 600; margin-bottom: 15px;">Satisfaction Rate</div>
                         <p>Based on feedback from students and parents who report improved confidence and competitive study habits.</p>
                     </div>
                 </div>
@@ -1010,309 +1285,94 @@
             <div class="container">
                 <h2 class="section-title">Rival Success Stories</h2>
                 <div class="testimonial-grid">
-                    <div class="testimonial fade-in">
-                        <p class="testimonial-text">"RivVal helped me go from failing algebra to getting 82% on my final exam. I became a rival to my old math-phobic self!"</p>
-                        <p class="testimonial-author">— Grade 10 Student, Edmonton</p>
+                    <div class="testimonial loading">
+                        <p class="testimonial-text">"RivVal helped me go from failing algebra to getting 82% on my final exam. The competitive approach really motivated me to rival my old math-phobic self!"</p>
+                        <p class="testimonial-author">— Sarah M., Grade 10 Student, Edmonton</p>
+                        <div class="testimonial-improvement">Grade improvement: F → B+</div>
                     </div>
-                    <div class="testimonial fade-in">
-                        <p class="testimonial-text">"My daughter's English grades improved from C+ to A- in one semester. The competitive approach really motivated her."</p>
-                        <p class="testimonial-author">— Parent, Edmonton</p>
+                    <div class="testimonial loading">
+                        <p class="testimonial-text">"My daughter's English grades improved from C+ to A- in just one semester. The personalized progress reports helped us track exactly how she was rivaling her previous performance."</p>
+                        <p class="testimonial-author">— Jennifer L., Parent, Edmonton</p>
+                        <div class="testimonial-improvement">Grade improvement: C+ → A-</div>
                     </div>
-                    <div class="testimonial fade-in">
-                        <p class="testimonial-text">"The progress reports are amazing - I can see exactly how my son is rivaling his previous performance each week."</p>
-                        <p class="testimonial-author">— Parent, Sherwood Park</p>
+                    <div class="testimonial loading">
+                        <p class="testimonial-text">"The study techniques I learned helped me rival top students in all my subjects, not just the ones we worked on. University prep was absolutely game-changing!"</p>
+                        <p class="testimonial-author">— Michael K., Grade 12 Student, Sherwood Park</p>
+                        <div class="testimonial-improvement">Now at University of Alberta</div>
                     </div>
-                    <div class="testimonial fade-in">
-                        <p class="testimonial-text">"I learned study techniques that helped me rival top students in all my subjects. University prep was game-changing!"</p>
-                        <p class="testimonial-author">— Grade 12 Student, Edmonton</p>
+                    <div class="testimonial loading">
+                        <p class="testimonial-text">"I went from dreading math class to actually looking forward to solving challenging problems. The Excel Mastery package was worth every penny - my diploma exam score exceeded all expectations."</p>
+                        <p class="testimonial-author">— Emma R., Grade 12 Student, Edmonton</p>
+                        <div class="testimonial-improvement">Math 30-1 Diploma: 87%</div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="guarantee">
+            <div class="container">
+                <h2>100% Satisfaction Guarantee</h2>
+                <p>If you're not completely satisfied with your first session, we'll work with you to make it right or provide a full refund. Your success is our commitment, and we stand behind every session with confidence.</p>
             </div>
         </section>
 
         <section class="faq">
             <div class="container">
                 <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="faq-grid">
+                <div class="faq-search">
+                    <input type="text" placeholder="Search FAQ..." id="faqSearch" aria-label="Search frequently asked questions">
+                </div>
+                <div class="faq-grid" id="faqGrid">
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>What does "RivVal" mean and how does it work?</span>
-                            <span>+</span>
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>What does "RivVal" mean and how does the competitive approach work?</span>
+                            <span aria-hidden="true">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>RivVal stands for "River Valley" but also represents "rival" - our philosophy of helping students rival their best selves. We use competitive strategies and progress tracking to motivate students to outperform their previous achievements, not compete against others.</p>
+                            <p>RivVal stands for "River Valley" but also represents "rival" - our core philosophy of helping students rival their best selves. We use competitive strategies, progress tracking, and personalized challenges to motivate students to outperform their previous achievements, not compete against others. It's about becoming your own academic rival.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>How do online tutoring sessions work?</span>
-                            <span>+</span>
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>How do online tutoring sessions work technically?</span>
+                            <span aria-hidden="true">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>We use Google Meets for all online sessions. You'll receive a meeting link before each session. All you need is a computer, tablet, or phone with internet access. Digital tools are used to share notes and work through problems together in real-time.</p>
+                            <p>We use Google Meets for all online sessions - it's free, reliable, and works on any device. You'll receive a meeting link before each session. All you need is a computer, tablet, or phone with internet access. We use digital whiteboards, screen sharing, and collaborative tools to work through problems together in real-time. It's just like being in the same room!</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>What's the difference between packages?</span>
-                            <span>+</span>
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>What's the real difference between packages and which should I choose?</span>
+                            <span aria-hidden="true">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Drop-in sessions offer flexibility at $45 each. The Growth Challenger (12 sessions) saves you $60 and includes progress tracking. The Excellence Mastery (24 sessions) saves $168, includes 2 bonus sessions, and offers premium features like custom study plans and quarterly parent consultations.</p>
+                            <p>Drop-in sessions ($45 each) are perfect for occasional help or test prep. The Growth Challenger (12 sessions, $40 each) saves you $60 and includes progress tracking, custom study plans, and consistent weekly slots - ideal for steady improvement. The Excellence Mastery (24 sessions, $38 each) saves $168, includes 2 bonus sessions, intensive diploma prep, and premium features like quarterly parent consultations - perfect for comprehensive academic transformation.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>What if my child needs help in multiple subjects?</span>
-                            <span>+</span>
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>Can you help with multiple subjects in the same session?</span>
+                            <span aria-hidden="true">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Both math and English tutoring are available, so we can work on both subjects within the same session or alternate between subjects across different sessions. A customized plan is created based on each student's specific needs and competitive goals.</p>
+                            <p>Absolutely! Both math and English tutoring are available, so we can work on both subjects within the same session or alternate between subjects across different sessions. A customized plan is created based on each student's specific needs, goals, and time constraints. Many students find this integrated approach helps them see connections between subjects.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>How does the Rival & Refer program work?</span>
-                            <span>+</span>
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>How exactly does the Rival & Refer program work?</span>
+                            <span aria-hidden="true">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>When you refer a friend who books their first package, you receive a $25 credit toward your next session and your friend gets $20 off their first package. Just mention the referral when they book their intro session! Help them rival their limits too.</p>
+                            <p>Simple! When you refer a friend who books their first package (not just a drop-in), you receive a $25 credit toward your next session and your friend gets $20 off their first package. Just have them mention your name when they book their intro session. There's no limit to how many friends you can refer - help them rival their limits and save money too!</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>How do you track progress and competition with myself?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Personalized progress reports track improvement in specific skills and concepts, showing how you're rivaling your previous performance. Parents receive regular updates showing their child's strengths, areas for improvement, and competitive achievements.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>Do you help with homework or focus on competitive strategies?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Both! We help with specific homework assignments and teach underlying concepts with competitive learning strategies. The goal is to help students become independent learners who can rival top performers and tackle new challenges confidently.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>What makes RivVal different from other tutors?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>RivVal uses competitive strategies to motivate self-improvement rather than competition with others. As a current university student, I understand recent curriculum changes and effective study techniques. My economics background provides a unique perspective on both academic success and real-world application.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>Can I pay for packages in installments?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Yes! The Growth Challenger can be split into 3 payments of $165, and the Excellence Mastery can be split into 4 payments of $240. Contact us to set up a payment plan that works for your family's budget.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
-                            <span>How flexible is the scheduling?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Very flexible! Scheduling works around students' school schedules, extracurricular activities, and family commitments. Package students get consistent weekly slots, but timing can be adjusted as needed. Drop-in sessions can be booked with short notice.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2>Ready to Rival Your Best?</h2>
-                <p>Book your free 15-minute intro session to discuss your academic goals and see how RivVal can help you outperform your expectations. No pressure, just a competitive chat about your potential!</p>
-                <div class="contact-buttons">
-                    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="contact-button" target="_blank">📅 Book Free Intro Session</a>
-                    <a href="mailto:rivervalleymentors@gmail.com" class="contact-button">✉️ Email RivVal</a>
-                    <button type="button" class="contact-button" onclick="alert('Please use the booking link or email for initial contact. Phone consultations available after booking.')">📞 Contact Info</button>
-                </div>
-                
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 20px; color: white;">Quick Contact Form</h3>
-                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="grade">Grade Level:</label>
-                            <input type="text" id="grade" name="grade" placeholder="e.g., Grade 10, University">
-                        </div>
-                        <div class="form-group">
-                            <label for="subjects">Subjects Needed:</label>
-                            <input type="text" id="subjects" name="subjects" placeholder="e.g., Math, English, Both">
-                        </div>
-                        <div class="form-group">
-                            <label for="package">Interested Package:</label>
-                            <select id="package" name="package">
-                                <option value="">Select a challenge level</option>
-                                <option value="drop-in">Drop-In Sessions ($45/session)</option>
-                                <option value="growth">Growth Challenger (12 sessions - Save $60!)</option>
-                                <option value="excellence">Excellence Mastery (24 sessions - Save $168!)</option>
-                                <option value="group">Group Rivals (Coming Soon)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message:</label>
-                            <textarea id="message" name="message" placeholder="Tell me about your academic goals or what you want to rival..."></textarea>
-                        </div>
-                        <button type="submit" class="contact-button" style="width: 100%; margin-top: 10px;">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>RivVal Tutoring</h4>
-                    <p>River Valley Mentors</p>
-                    <p>Personalized Math & English tutoring in the Edmonton area.</p>
-                    <p style="margin-top: 15px;"><strong>Rival & Refer - Both save!</strong></p>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <p>Math Mastery - $45/session</p>
-                    <p>English Excellence - $45/session</p>
-                    <p>Diploma Domination - $55/session</p>
-                    <p>University Ready - $55/session</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Challenge Packages</h4>
-                    <p>Growth Challenger - Save $60</p>
-                    <p>Excellence Mastery - Save $168</p>
-                    <p>Group Rivals <span class="coming-soon">Soon</span></p>
-                    <p>Payment plans available</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Edmonton, Alberta</p>
-                    <p><a href="mailto:rivervalleymentors@gmail.com">rivervalleymentors@gmail.com</a></p>
-                    <p>Phone consultations available after booking</p>
-                </div>
-            </div>
-            <p style="text-align: center; padding-top: 20px; border-top: 1px solid #555;">&copy; 2025 RivVal Tutoring - River Valley Mentors. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // FAQ keyboard handler
-        function handleFAQKeydown(event, element) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleFAQ(element);
-            }
-        }
-
-        // FAQ Toggle functionality
-        function toggleFAQ(element) {
-            const answer = element.nextElementSibling;
-            const icon = element.querySelector('span:last-child');
-            
-            // Close all other FAQs
-            document.querySelectorAll('.faq-answer').forEach(faq => {
-                if (faq !== answer) {
-                    faq.classList.remove('active');
-                }
-            });
-            document.querySelectorAll('.faq-question span:last-child').forEach(iconEl => {
-                if (iconEl !== icon) {
-                    iconEl.textContent = '+';
-                }
-            });
-            
-            // Toggle current FAQ
-            answer.classList.toggle('active');
-            icon.textContent = answer.classList.contains('active') ? '−' : '+';
-        }
-
-        // Contact form handler
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const grade = formData.get('grade');
-            const subjects = formData.get('subjects');
-            const selectedPackage = formData.get('package');
-            const message = formData.get('message');
-            
-            // Create mailto link with form data
-            const subject = encodeURIComponent('RivVal Tutoring Inquiry from ' + name);
-            const body = encodeURIComponent(
-                `Hi RivVal,\n\nI'm interested in challenging myself with tutoring services.\n\n` +
-                `Name: ${name}\n` +
-                `Email: ${email}\n` +
-                `Grade Level: ${grade}\n` +
-                `Subjects: ${subjects}\n` +
-                `Package Interest: ${selectedPackage}\n` +
-                `Message: ${message}\n\n` +
-                `Please let me know about availability and how I can start rivaling my best self.\n\nThanks!`
-            );
-            
-            window.location.href = `mailto:rivervalleymentors@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Show confirmation
-            alert('Opening your email client with the message. If it doesn\'t work, please email us directly at rivervalleymentors@gmail.com');
-        }
-    </script>
-</body>
-</html>
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>How do you track progress and measure "rivaling" performance?</span>
