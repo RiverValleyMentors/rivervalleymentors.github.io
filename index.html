@@ -44,10 +44,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Prevent sticky header from cutting off anchored sections */
-            section[id] {
-                scroll-margin-top: calc(var(--header-height) + 12px);
-            }
+        }
+
+        /* Prevent sticky header from cutting off anchored sections */
+        section[id] {
+            scroll-margin-top: calc(var(--header-height) + 12px);
         }
 
         :root {
@@ -832,14 +833,26 @@
         }
 
         /* Focus styles */
-        *:focus {
+        *:focus-visible {
+            outline: 2px solid var(--rival-blue);
+            outline-offset: 2px;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
             outline: 2px solid var(--rival-blue);
             outline-offset: 2px;
         }
 
         /* Loading Animation */
         .loading {
-            opacity: 0;
+            opacity: 1;
+        }
+
+        .loading.visible {
             animation: fadeInUp 0.6s ease forwards;
         }
 
@@ -1613,77 +1626,113 @@
             a.addEventListener('click', function () { setOpen(false); });
         });
     })();
-    </script>
 
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    // Fade in animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.loading').forEach(el => {
-            observer.observe(el);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
+    }, observerOptions);
 
-        // FAQ Toggle functionality
-        function toggleFAQ(element) {
-            const answer = element.nextElementSibling;
-            const icon = element.querySelector('span:last-child');
-            
-            // Close all other FAQs
-            document.querySelectorAll('.faq-answer').forEach(faq => {
-                if (faq !== answer) {
-                    faq.classList.remove('active');
-                }
-            });
-            document.querySelectorAll('.faq-question span:last-child').forEach(iconEl => {
-                if (iconEl !== icon) {
-                    iconEl.textContent = '+';
-                }
-            });
-            
-            // Toggle current FAQ
-            answer.classList.toggle('active');
-            icon.textContent = answer.classList.contains('active') ? '−' : '+';
-        }
+    document.querySelectorAll('.loading').forEach(el => {
+        observer.observe(el);
+    });
 
-        // Contact form handler
-        function handleFormSubmit(event) {
+    // FAQ Toggle functionality
+    function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('span:last-child');
+        const isOpen = answer.classList.contains('active');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-answer').forEach(faq => {
+            if (faq !== answer) {
+                faq.classList.remove('active');
+            }
+        });
+        document.querySelectorAll('.faq-question').forEach(question => {
+            if (question !== element) {
+                question.setAttribute('aria-expanded', 'false');
+                question.querySelector('span:last-child').textContent = '+';
+            }
+        });
+        
+        // Toggle current FAQ
+        answer.classList.toggle('active');
+        element.setAttribute('aria-expanded', !isOpen);
+        icon.textContent = answer.classList.contains('active') ? '−' : '+';
+    }
+
+    // Handle keyboard navigation for FAQ
+    function handleFAQKeydown(event, element) {
+        if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            const formData = new FormData(event.target);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const grade = formData.get('grade');
-            const subjects = formData.get('subjects');
-            const package = formData.get('package');
-            const message = formData.get('message');
-            
-            // Create mailto link with form data
-            const subject = encodeURIComponent('RivVal Tutoring Inquiry from ' + name);
-            const body = encodeURIComponent(
-                `Hi RivVal,\n\nI'm interested in challenging myself with tutoring services.\n\n` +
-                `Name: ${name}\n` +
-                `Email: ${email}\n` +
-                `Grade Level: ${grade}\n` +
-                `Subjects: ${subjects}\n` +
-                `Package Interest: ${package}\n` +
-                `Message: ${message}\n\n` +
-                `Please let me know about availability and how I can start rivaling my best self.\n\nThanks!`
-            );
-            
-            window.location.href = `mailto:rivervalleymentors@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Show confirmation
-            alert('Opening your email client with the message. If it doesn\'t work, please email us directly at rivervalleymentors@gmail.com');
+            toggleFAQ(element);
         }
+    }
+
+    // FAQ Search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('faqSearch');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question span:first-child').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        }
+    });
+
+    // Contact form handler
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const grade = formData.get('grade');
+        const subjects = formData.get('subjects');
+        const package = formData.get('package');
+        const message = formData.get('message');
+        
+        // Create mailto link with form data
+        const subject = encodeURIComponent('RivVal Tutoring Inquiry from ' + name);
+        const body = encodeURIComponent(
+            `Hi RivVal,\n\nI'm interested in challenging myself with tutoring services.\n\n` +
+            `Name: ${name}\n` +
+            `Email: ${email}\n` +
+            `Grade Level: ${grade}\n` +
+            `Subjects: ${subjects}\n` +
+            `Package Interest: ${package}\n` +
+            `Message: ${message}\n\n` +
+            `Please let me know about availability and how I can start rivaling my best self.\n\nThanks!`
+        );
+        
+        window.location.href = `mailto:rivervalleymentors@gmail.com?subject=${subject}&body=${body}`;
+        
+        // Show confirmation
+        alert('Opening your email client with the message. If it doesn\'t work, please email us directly at rivervalleymentors@gmail.com');
+        
+        // Reset form
+        event.target.reset();
+    }
     </script>
 </body>
 </html>
