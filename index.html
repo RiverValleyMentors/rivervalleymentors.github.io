@@ -23,8 +23,6 @@
     <meta property="og:url" content="https://rivervalleymentors.github.io/" />
     
     <!-- Brand Elements -->
-    <!-- WHEN YOU CREATE FAVICON: Uncomment this line -->
-    <!-- <link rel="icon" href="/favicon.ico" /> -->
     <meta name="theme-color" content="#2d5a5a" />
     
     <!-- Structured Data for Google -->
@@ -1034,7 +1032,7 @@
                 <h2 class="section-title">Frequently Asked Questions</h2>
                 <div class="faq-grid">
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>What does "RivVal" mean and how does it work?</span>
                             <span>+</span>
                         </div>
@@ -1044,7 +1042,7 @@
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>How do online tutoring sessions work?</span>
                             <span>+</span>
                         </div>
@@ -1054,7 +1052,7 @@
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>What's the difference between packages?</span>
                             <span>+</span>
                         </div>
@@ -1064,7 +1062,7 @@
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>What if my child needs help in multiple subjects?</span>
                             <span>+</span>
                         </div>
@@ -1074,7 +1072,7 @@
                     </div>
 
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>How does the Rival & Refer program work?</span>
                             <span>+</span>
                         </div>
@@ -1084,7 +1082,7 @@
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>How do you track progress and competition with myself?</span>
                             <span>+</span>
                         </div>
@@ -1094,7 +1092,7 @@
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>Do you help with homework or focus on competitive strategies?</span>
                             <span>+</span>
                         </div>
@@ -1104,7 +1102,7 @@
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>What makes RivVal different from other tutors?</span>
                             <span>+</span>
                         </div>
@@ -1114,7 +1112,7 @@
                     </div>
 
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>Can I pay for packages in installments?</span>
                             <span>+</span>
                         </div>
@@ -1124,7 +1122,7 @@
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0">
                             <span>How flexible is the scheduling?</span>
                             <span>+</span>
                         </div>
@@ -1143,7 +1141,7 @@
                 <div class="contact-buttons">
                     <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="contact-button" target="_blank">📅 Book Free Intro Session</a>
                     <a href="mailto:rivervalleymentors@gmail.com" class="contact-button">✉️ Email RivVal</a>
-                    <a href="#" class="contact-button" onclick="alert('Please use the booking link or email for initial contact. Phone consultations available after booking.')">📞 Contact Info</a>
+                    <button type="button" class="contact-button" onclick="alert('Please use the booking link or email for initial contact. Phone consultations available after booking.')">📞 Contact Info</button>
                 </div>
                 
                 <div class="contact-form">
@@ -1253,6 +1251,14 @@
             observer.observe(el);
         });
 
+        // FAQ keyboard handler
+        function handleFAQKeydown(event, element) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleFAQ(element);
+            }
+        }
+
         // FAQ Toggle functionality
         function toggleFAQ(element) {
             const answer = element.nextElementSibling;
@@ -1283,7 +1289,7 @@
             const email = formData.get('email');
             const grade = formData.get('grade');
             const subjects = formData.get('subjects');
-            const package = formData.get('package');
+            const selectedPackage = formData.get('package');
             const message = formData.get('message');
             
             // Create mailto link with form data
@@ -1294,7 +1300,7 @@
                 `Email: ${email}\n` +
                 `Grade Level: ${grade}\n` +
                 `Subjects: ${subjects}\n` +
-                `Package Interest: ${package}\n` +
+                `Package Interest: ${selectedPackage}\n` +
                 `Message: ${message}\n\n` +
                 `Please let me know about availability and how I can start rivaling my best self.\n\nThanks!`
             );
