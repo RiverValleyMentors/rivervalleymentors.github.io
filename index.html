@@ -892,35 +892,6 @@
                 display: none;
             }
         }
-        <script>
-        // Smooth scrolling with sticky-header offset and null-safe targeting
-        (function () {
-          var header = document.querySelector('header');
-          var cssVar = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
-          var headerHeight = parseInt(cssVar, 10);
-          if (!headerHeight || isNaN(headerHeight)) headerHeight = header ? header.offsetHeight : 0;
-
-          document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-            anchor.addEventListener('click', function (e) {
-              var hash = this.getAttribute('href');
-              if (!hash || hash === '#') return;                 // ignore empty anchors
-        
-              var target = document.querySelector(hash);
-              if (!target) return;                               // if no target, let default behavior proceed
-        
-              e.preventDefault();                                 // only prevent if we have a target
-        
-              var y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8; // extra breathing room
-              window.scrollTo({ top: y, behavior: 'smooth' });
-        
-              // Keep the URL hash without jumping
-              history.replaceState(null, '', hash);
-            });
-          });
-        })();
-        </script>
-        
-        }
 
         /* Coming Soon Badge */
         .coming-soon {
@@ -971,6 +942,53 @@
         .referral-button:hover {
             background: var(--cream);
             transform: translateY(-2px);
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: white;
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
         }
     </style>
 </head>
@@ -1404,3 +1422,214 @@
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
                             <span>How do you track progress and measure "rivaling" performance?</span>
+                            <span aria-hidden="true">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We use detailed progress tracking including grade improvements, concept mastery assessments, and confidence surveys. Package students receive regular progress reports showing exactly how they're rivaling their previous performance. We track metrics like problem-solving speed, accuracy improvements, and academic confidence levels to ensure measurable growth.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>What if I need to reschedule or cancel a session?</span>
+                            <span aria-hidden="true">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We understand life happens! For package students, you can reschedule with 24-hour notice at no charge. Drop-in sessions require 48-hour notice for full refund. Emergency situations are handled case-by-case with flexibility. We want to work with your schedule, not against it.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>Do you offer group tutoring or just individual sessions?</span>
+                            <span aria-hidden="true">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Currently, we focus on individual sessions to provide personalized attention and customized learning plans. However, "Group Rivals" sessions are coming soon for students who want to challenge each other in a collaborative competitive environment. Individual sessions ensure you get the specific help you need to rival your best performance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)" onkeydown="handleFAQKeydown(event, this)" role="button" tabindex="0" aria-expanded="false">
+                            <span>How do payment plans work for the packages?</span>
+                            <span aria-hidden="true">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Growth Challenger can be split into 3 payments of $165 each. Excellence Mastery can be split into 4 payments of $240 each. We can also create custom payment schedules that work with your budget - just ask during your free consultation. All payment plans are interest-free and designed to make quality tutoring accessible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Ready to Rival Your Best?</h2>
+                <p>Book your free 15-minute intro session to discuss your academic goals and see how RivVal can help you outperform your expectations. No pressure, just a competitive chat about your potential!</p>
+                <div class="contact-buttons">
+                    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2Wi8AEoeDULZD8izj2y7OM6kGwDD13H0G4aUJo1sBGr6_bv8X8yjIlmH06gOMNZxPZ58J9DXtS" class="contact-button" target="_blank">📅 Book Free Intro Session</a>
+                    <a href="mailto:rivervalleymentors@gmail.com" class="contact-button">✉️ Email RivVal</a>
+                    <a href="#" class="contact-button" onclick="alert('Please use the booking link or email for initial contact. Phone consultations available after booking.')">📞 Contact Info</a>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 20px; color: white;">Quick Contact Form</h3>
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">Grade Level:</label>
+                            <input type="text" id="grade" name="grade" placeholder="e.g., Grade 10, University">
+                        </div>
+                        <div class="form-group">
+                            <label for="subjects">Subjects Needed:</label>
+                            <input type="text" id="subjects" name="subjects" placeholder="e.g., Math, English, Both">
+                        </div>
+                        <div class="form-group">
+                            <label for="package">Interested Package:</label>
+                            <select id="package" name="package">
+                                <option value="">Select a challenge level</option>
+                                <option value="drop-in">Drop-In Sessions ($45/session)</option>
+                                <option value="growth">Growth Challenger (12 sessions - Save $60!)</option>
+                                <option value="excellence">Excellence Mastery (24 sessions - Save $168!)</option>
+                                <option value="group">Group Rivals (Coming Soon)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" placeholder="Tell me about your academic goals or what you want to rival..."></textarea>
+                        </div>
+                        <button type="submit" class="contact-button" style="width: 100%; margin-top: 10px;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>RivVal Tutoring</h4>
+                    <p>River Valley Mentors</p>
+                    <p>Personalized Math & English tutoring in the Edmonton area.</p>
+                    <p style="margin-top: 15px;"><strong>Rival & Refer - Both save!</strong></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <p>Math Mastery - $45/session</p>
+                    <p>English Excellence - $45/session</p>
+                    <p>Diploma Domination - $55/session</p>
+                    <p>University Ready - $55/session</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Challenge Packages</h4>
+                    <p>Growth Challenger - Save $60</p>
+                    <p>Excellence Mastery - Save $168</p>
+                    <p>Group Rivals <span class="coming-soon">Soon</span></p>
+                    <p>Payment plans available</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Edmonton, Alberta</p>
+                    <p><a href="mailto:rivervalleymentors@gmail.com">rivervalleymentors@gmail.com</a></p>
+                    <p>Phone consultations available after booking</p>
+                </div>
+            </div>
+            <p style="text-align: center; padding-top: 20px; border-top: 1px solid #555;">&copy; 2025 RivVal Tutoring - River Valley Mentors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span:last-child');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(faq => {
+                if (faq !== answer) {
+                    faq.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.faq-question span:last-child').forEach(iconEl => {
+                if (iconEl !== icon) {
+                    iconEl.textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+
+        // Contact form handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const grade = formData.get('grade');
+            const subjects = formData.get('subjects');
+            const package = formData.get('package');
+            const message = formData.get('message');
+            
+            // Create mailto link with form data
+            const subject = encodeURIComponent('RivVal Tutoring Inquiry from ' + name);
+            const body = encodeURIComponent(
+                `Hi RivVal,\n\nI'm interested in challenging myself with tutoring services.\n\n` +
+                `Name: ${name}\n` +
+                `Email: ${email}\n` +
+                `Grade Level: ${grade}\n` +
+                `Subjects: ${subjects}\n` +
+                `Package Interest: ${package}\n` +
+                `Message: ${message}\n\n` +
+                `Please let me know about availability and how I can start rivaling my best self.\n\nThanks!`
+            );
+            
+            window.location.href = `mailto:rivervalleymentors@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Show confirmation
+            alert('Opening your email client with the message. If it doesn\'t work, please email us directly at rivervalleymentors@gmail.com');
+        }
+    </script>
+</body>
+</html>
