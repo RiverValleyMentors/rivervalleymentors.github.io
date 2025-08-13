@@ -3,90 +3,550 @@
 <head>
   <meta charset="UTF-8">
   <title>Members Area | RivVal Tutoring - River Valley Mentors</title>
-  <meta name="description" content="Members-only resources for River Valley Mentors.">
+  <meta name="description" content="Exclusive resources and tools for River Valley Mentors members - Coming Soon!">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://rivervalleymentors.github.io/members.html" />
   <meta name="theme-color" content="#2d5a5a" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
     :root {
       --primary-green: #2d5a5a;
       --accent-green: #4a7c59;
+      --sage-green: #6b8e6b;
       --cream: #f5f1e8;
-      --muted: #6b7280;
+      --warm-cream: #f0ead6;
+      --text-dark: #2c2c2c;
+      --text-muted: #6b7280;
       --rival-blue: #3b82f6;
+      --success-green: #10b981;
+      --gradient-bg: linear-gradient(135deg, var(--cream) 0%, var(--warm-cream) 100%);
     }
-    body {
-      background: var(--cream);
-      color: var(--primary-green);
-      font-family: Georgia, serif;
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--gradient-bg);
+      color: var(--primary-green);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated background elements */
+    .floating-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .floating-book {
+      position: absolute;
+      width: 20px;
+      height: 25px;
+      background: var(--accent-green);
+      border-radius: 2px;
+      opacity: 0.1;
+      animation: float-books 10s ease-in-out infinite;
+    }
+
+    .book-1 { left: 10%; animation-delay: 0s; }
+    .book-2 { left: 70%; animation-delay: 3s; transform: rotate(15deg); }
+    .book-3 { left: 40%; animation-delay: 6s; transform: rotate(-10deg); }
+    .book-4 { left: 85%; animation-delay: 9s; }
+
+    @keyframes float-books {
+      0%, 100% { 
+        transform: translateY(100vh) rotate(0deg); 
+        opacity: 0; 
+      }
+      10% { opacity: 0.1; }
+      50% { 
+        opacity: 0.2; 
+        transform: translateY(50vh) rotate(180deg); 
+      }
+      90% { opacity: 0.1; }
+    }
+
+    .main-container {
+      position: relative;
+      z-index: 10;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
+
     .container {
-      max-width: 420px;
+      max-width: 900px;
+      width: 100%;
       text-align: center;
       background: white;
-      box-shadow: 0 6px 32px rgba(45,90,90,0.08);
-      padding: 40px 16px 32px 16px;
-      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(45,90,90,0.12);
+      padding: 50px 40px;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
     }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-green), var(--sage-green));
+    }
+
     .logo-mem {
-      width: 72px;
-      height: 72px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      margin-bottom: 14px;
+      margin: 0 auto 24px;
       background: var(--accent-green);
-      box-shadow: 0 2px 8px rgba(45,90,90,.10);
+      box-shadow: 0 8px 24px rgba(45,90,90,.15);
       object-fit: cover;
+      animation: gentle-pulse 3s ease-in-out infinite;
+      display: block;
     }
+
+    @keyframes gentle-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
     h1 {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 16px;
       color: var(--primary-green);
       font-weight: 700;
+      font-family: Georgia, serif;
     }
+
     .badge {
-      background: var(--rival-blue);
+      background: linear-gradient(135deg, var(--rival-blue), var(--success-green));
       color: #fff;
-      border-radius: 999px;
-      padding: 7px 20px;
+      border-radius: 50px;
+      padding: 12px 28px;
       font-weight: 600;
-      margin-top: 6px;
+      margin: 0 auto 24px;
       display: inline-block;
-      font-size: 1rem;
-      margin-bottom: 16px;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+      animation: badge-glow 2s ease-in-out infinite alternate;
     }
-    p {
+
+    @keyframes badge-glow {
+      0% { box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+      100% { box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4); }
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .preview-card {
+      background: var(--cream);
+      padding: 28px 24px;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .preview-card:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(45,90,90,0.15);
+    }
+
+    .preview-card:hover::before {
+      left: 100%;
+    }
+
+    .preview-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 24px;
+      color: white;
+    }
+
+    .preview-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+    }
+
+    .preview-description {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .coming-soon-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--rival-blue);
+      color: white;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .notification-signup {
+      background: var(--warm-cream);
+      padding: 32px;
+      border-radius: 16px;
+      margin: 40px 0;
+      border: 2px dashed var(--accent-green);
+    }
+
+    .notification-title {
+      font-size: 1.4rem;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .notification-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .email-input {
+      padding: 14px 20px;
+      border: 2px solid var(--accent-green);
+      border-radius: 50px;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+      min-width: 250px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .email-input:focus {
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px rgba(45, 90, 90, 0.1);
+    }
+
+    .notify-btn {
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .notify-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45, 90, 90, 0.3);
+    }
+
+    .contact-section {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(45, 90, 90, 0.1);
+    }
+
+    .contact-text {
       font-size: 1.05rem;
-      color: var(--muted);
+      color: var(--text-muted);
       margin-bottom: 20px;
     }
-    a {
+
+    .contact-link {
       color: var(--primary-green);
-      text-decoration: underline;
+      text-decoration: none;
       font-weight: 600;
-      outline: none;
-      transition: color .2s;
+      padding: 12px 24px;
+      border: 2px solid var(--primary-green);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      display: inline-block;
     }
-    a:focus, a:hover { color: var(--rival-blue); }
+
+    .contact-link:hover {
+      background: var(--primary-green);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--cream);
+      border-radius: 3px;
+      margin: 24px 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-green));
+      border-radius: 3px;
+      width: 75%;
+      animation: progress-grow 2s ease-out;
+    }
+
+    @keyframes progress-grow {
+      from { width: 0%; }
+      to { width: 75%; }
+    }
+
+    .progress-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .container { 
+        padding: 40px 24px; 
+        margin: 10px;
+      }
+      h1 { font-size: 2rem; }
+      .preview-grid { grid-template-columns: 1fr; }
+      .notification-form { flex-direction: column; }
+      .email-input { min-width: 100%; }
+      .notify-btn { width: 100%; }
+    }
+
     @media (max-width: 500px) {
-      .container { padding: 20px 5px 14px 5px; }
-      h1 { font-size: 1.1rem; }
+      .container { padding: 30px 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="assets/og-logo.png" alt="River Valley Mentors logo" class="logo-mem" loading="lazy">
-    <h1>Members Area</h1>
-    <div class="badge">Coming Soon</div>
-    <p>This page will host exclusive resources for River Valley Mentors members.<br>
-      For progress reports or updates, please <a href="mailto:rivervalleymentors@gmail.com" rel="noopener noreferrer">contact us</a>.
-    </p>
+  <div class="floating-elements">
+    <div class="floating-book book-1"></div>
+    <div class="floating-book book-2"></div>
+    <div class="floating-book book-3"></div>
+    <div class="floating-book book-4"></div>
   </div>
+
+  <div class="main-container">
+    <div class="container">
+      <img src="assets/og-logo.png" alt="River Valley Mentors logo" class="logo-mem" loading="lazy">
+      <h1>Members Area</h1>
+      <div class="badge">🚀 Coming Soon</div>
+      
+      <p class="subtitle">
+        We're building something special! An exclusive hub for River Valley Mentors members 
+        with personalized resources, progress tracking, and premium learning tools.
+      </p>
+
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <p class="progress-text">Development Progress: 75% Complete</p>
+
+      <div class="preview-grid">
+        <div class="preview-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="preview-icon">📊</div>
+          <div class="preview-title">Progress Dashboard</div>
+          <div class="preview-description">
+            Track your learning journey with detailed progress reports, grade improvements, and milestone achievements.
+          </div>
+        </div>
+
+        <div class="preview-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="preview-icon">📚</div>
+          <div class="preview-title">Resource Library</div>
+          <div class="preview-description">
+            Access exclusive study materials, practice problems, and curated learning resources tailored to your needs.
+          </div>
+        </div>
+
+        <div class="preview-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="preview-icon">📅</div>
+          <div class="preview-title">Session Scheduler</div>
+          <div class="preview-description">
+            Book and manage your tutoring sessions, view upcoming appointments, and sync with your calendar.
+          </div>
+        </div>
+
+        <div class="preview-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="preview-icon">🎯</div>
+          <div class="preview-title">Goal Tracking</div>
+          <div class="preview-description">
+            Set academic goals, monitor progress, and celebrate achievements with your personalized learning roadmap.
+          </div>
+        </div>
+
+        <div class="preview-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="preview-icon">💬</div>
+          <div class="preview-title">Tutor Communication</div>
+          <div class="preview-description">
+            Direct messaging with your tutors, homework help requests, and quick question support between sessions.
+          </div>
+        </div>
+
+        <div class="preview-card">
+          <div class="coming-soon-tag">Soon</div>
+          <div class="preview-icon">🏆</div>
+          <div class="preview-title">Achievement System</div>
+          <div class="preview-description">
+            Earn badges and certificates as you reach learning milestones and academic goals throughout your journey.
+          </div>
+        </div>
+      </div>
+
+      <div class="notification-signup">
+        <div class="notification-title">🔔 Get Notified When We Launch</div>
+        <p class="contact-text">Be the first to access exclusive member features!</p>
+        <div class="notification-form">
+          <input type="email" class="email-input" placeholder="Enter your email address" id="emailInput">
+          <button class="notify-btn" onclick="handleNotifyMe()">Notify Me</button>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <p class="contact-text">
+          Have questions about the upcoming members area or need immediate support?
+        </p>
+        <a href="mailto:rivervalleymentors@gmail.com" class="contact-link" rel="noopener noreferrer">
+          📧 Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleNotifyMe() {
+      const emailInput = document.getElementById('emailInput');
+      const email = emailInput.value.trim();
+      
+      if (!email) {
+        alert('Please enter your email address!');
+        return;
+      }
+      
+      if (!isValidEmail(email)) {
+        alert('Please enter a valid email address!');
+        return;
+      }
+      
+      // Here you would typically send the email to your backend
+      // For now, we'll show a success message and create a mailto link
+      const subject = encodeURIComponent('RivVal Members Area - Notify Me');
+      const body = encodeURIComponent(`Hi RivVal Team,\n\nPlease notify me when the Members Area launches!\n\nEmail: ${email}\n\nThanks!`);
+      
+      window.location.href = `mailto:rivervalleymentors@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Show success feedback
+      const button = document.querySelector('.notify-btn');
+      const originalText = button.textContent;
+      button.textContent = '✅ Added!';
+      button.style.background = 'var(--success-green)';
+      
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = 'linear-gradient(135deg, var(--primary-green), var(--accent-green))';
+        emailInput.value = '';
+      }, 3000);
+    }
+    
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Add some interactive elements
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate cards on scroll
+      const cards = document.querySelectorAll('.preview-card');
+      
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }, index * 100);
+          }
+        });
+      }, observerOptions);
+      
+      cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        cardObserver.observe(card);
+      });
+    });
+
+    // Allow Enter key to submit notification signup
+    document.getElementById('emailInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        handleNotifyMe();
+      }
+    });
+  </script>
 </body>
 </html>
