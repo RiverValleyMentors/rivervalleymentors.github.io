@@ -44,6 +44,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* Prevent sticky header from cutting off anchored sections */
+            section[id] {
+                scroll-margin-top: calc(var(--header-height) + 12px);
+            }
         }
 
         :root {
@@ -888,10 +892,34 @@
                 display: none;
             }
         }
+        <script>
+        // Smooth scrolling with sticky-header offset and null-safe targeting
+        (function () {
+          var header = document.querySelector('header');
+          var cssVar = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
+          var headerHeight = parseInt(cssVar, 10);
+          if (!headerHeight || isNaN(headerHeight)) headerHeight = header ? header.offsetHeight : 0;
 
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
+          document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+            anchor.addEventListener('click', function (e) {
+              var hash = this.getAttribute('href');
+              if (!hash || hash === '#') return;                 // ignore empty anchors
+        
+              var target = document.querySelector(hash);
+              if (!target) return;                               // if no target, let default behavior proceed
+        
+              e.preventDefault();                                 // only prevent if we have a target
+        
+              var y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8; // extra breathing room
+              window.scrollTo({ top: y, behavior: 'smooth' });
+        
+              // Keep the URL hash without jumping
+              history.replaceState(null, '', hash);
+            });
+          });
+        })();
+        </script>
+        
         }
 
         /* Coming Soon Badge */
@@ -1316,7 +1344,7 @@
             </div>
         </section>
 
-        <section class="faq">
+        <section id="faq" class="faq">
             <div class="container">
                 <h2 class="section-title">Frequently Asked Questions</h2>
                 <div class="faq-search">
