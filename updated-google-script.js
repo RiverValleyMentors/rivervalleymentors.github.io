@@ -9,7 +9,7 @@ function doPost(e) {
     }
     
     // Open your Google Sheet
-    const sheet = SpreadsheetApp.openById('YOUR_SHEET_ID').getActiveSheet();
+    const sheet = SpreadsheetApp.openById('1cu41r2QHzmRaERqnr4yuDdKKW5PSCtrbfIlPO9xGH5I').getActiveSheet();
     
     // Add headers if sheet is empty
     if (sheet.getLastRow() === 0) {
