@@ -19,7 +19,7 @@ function doPost(e) {
     let email, timestamp;
     
     // Handle both JSON and form data
-    if (e.postData && e.postData.contents) {
+    if (e.postData?.contents) {
       try {
         // Parse JSON payload
         const data = JSON.parse(e.postData.contents);
