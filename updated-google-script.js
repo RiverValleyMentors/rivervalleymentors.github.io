@@ -1,50 +1,58 @@
+const SHEET_ID = '1cu41r2QHzmRaERqnr4yuDdKKW5PSCtrbfIlPO9xGH5I';
+
+/* ---------- POST : add subscriber ---------- */
 function doPost(e) {
+  const lock = LockService.getPublicLock();
   try {
-    // Parse email and timestamp from URL-encoded form submission
+    lock.waitLock(3000);                               // prevent race duplicates
+
+    // 1. Extract & validate
     const email = (e.parameter.email || '').trim().toLowerCase();
-    const timestamp = e.parameter.timestamp || new Date().toISOString();
+    const ts    = e.parameter.timestamp || new Date().toISOString();
+    if (!email) return text('Error: No email provided');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
+      return text('Error: Invalid email');
 
-    if (!email) {
-      return ContentService.createTextOutput('Error: No email provided');
-    }
-    
-    // Open your Google Sheet
-    const sheet = SpreadsheetApp.openById('1cu41r2QHzmRaERqnr4yuDdKKW5PSCtrbfIlPO9xGH5I').getActiveSheet();
-    
-    // Add headers if sheet is empty
-    if (sheet.getLastRow() === 0) {
+    // 2. Open sheet & ensure header
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
+    if (sheet.getLastRow() === 0)
       sheet.appendRow(['Email', 'Timestamp', 'Status']);
-    }
 
-    // Get all emails, skipping header
-    const emails = sheet.getRange(2, 1, sheet.getLastRow()-1, 1).getValues().flat().map(e => e.toLowerCase());
-    if (emails.includes(email)) {
-      return ContentService.createTextOutput('Already subscribed');
-    }
+    // 3. Duplicate check
+    const last  = sheet.getLastRow();
+    const list  = last > 1
+        ? sheet.getRange(2, 1, last - 1, 1).getValues().flat().map(String)
+        : [];
+    if (list.includes(email)) return text('Already subscribed');
 
-    // Add new row
-    sheet.appendRow([email, timestamp, 'Pending']);
+    // 4. Append row
+    sheet.appendRow([email, ts, 'Pending']);
+    return text('Success');
 
-    return ContentService.createTextOutput('Success');
-  } catch (error) {
-    return ContentService.createTextOutput('Error: ' + error.toString());
+  } catch (err) {
+    console.error('[Signup error]', err);
+    return text('Error: ' + err);
+  } finally {
+    lock.releaseLock();
   }
 }
 
+/* ---------- GET : misc endpoints ---------- */
 function doGet(e) {
   try {
-    // Handle count request
     if (e.parameter.action === 'count') {
-      const sheet = SpreadsheetApp.openById('1cu41r2QHzmRaERqnr4yuDdKKW5PSCtrbfIlPO9xGH5I').getActiveSheet();
-      const lastRow = sheet.getLastRow();
-      // Subtract 1 for header row, or return 0 if no data
-      const count = lastRow > 1 ? lastRow - 1 : 0;
-      return ContentService.createTextOutput(count.toString());
+      const sheet  = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
+      const count  = Math.max(sheet.getLastRow() - 1, 0); // ignore header
+      return text(String(count));
     }
-    
-    return ContentService.createTextOutput('RivVal Email Service Running');
-  } catch (error) {
-    console.error('Failed to get subscriber count:', error);
-    return ContentService.createTextOutput('0');
+    return text('RivVal Email Service Running');
+  } catch (err) {
+    console.error('[Count error]', err);
+    return text('0');
   }
+}
+
+/* ---------- helper ---------- */
+function text(msg) {
+  return ContentService.createTextOutput(msg);
 }
