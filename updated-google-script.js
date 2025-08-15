@@ -3,9 +3,9 @@
 
 function doPost(e) {
   try {
-    // Handle form data
+    // Get form data from parameters
     const email = e.parameter.email;
-    const timestamp = e.parameter.timestamp;
+    const timestamp = e.parameter.timestamp || new Date().toISOString();
     
     if (!email) {
       return ContentService.createTextOutput('Error: No email provided');
@@ -13,6 +13,11 @@ function doPost(e) {
     
     // Open your Google Sheet
     const sheet = SpreadsheetApp.openById('1cu41r2QHzmRaERqnr4yuDdKKW5PSCtrbfIlPO9xGH5I').getActiveSheet();
+    
+    // Add headers if sheet is empty
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['Email', 'Timestamp', 'Status']);
+    }
     
     // Check if email already exists
     const emails = sheet.getRange('A:A').getValues().flat();
