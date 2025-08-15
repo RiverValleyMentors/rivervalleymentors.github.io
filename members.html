@@ -488,9 +488,10 @@
         return;
       }
       
-      // Check if already subscribed
+      // Check if already subscribed (normalize email case)
+      const normalizedEmail = email.toLowerCase();
       const subscribers = JSON.parse(localStorage.getItem('rivval_subscribers') || '[]');
-      if (subscribers.includes(email)) {
+      if (subscribers.includes(normalizedEmail)) {
         alert('You\'re already subscribed!');
         return;
       }
@@ -500,18 +501,13 @@
       button.disabled = true;
       
       try {
-        // Store locally
-        subscribers.push(email);
-        localStorage.setItem('rivval_subscribers', JSON.stringify(subscribers));
-        
-        // Send to Google Sheets
+        // Send to Google Sheets first
         console.log('Sending email to Google Sheets:', email);
         
         const formData = new URLSearchParams({
-          email: email,
+          email: normalizedEmail,
           timestamp: new Date().toISOString()
         });
-        console.log('Form data:', formData.toString());
         
         const response = await fetch('https://script.google.com/macros/s/AKfycbzZSeN-lkBN6XxYalDxg3bd0G_71gwW6iGzMOYozvKP1fZmMFLXxOmgV7jmgcSTyb5S/exec', {
           method: 'POST',
@@ -519,19 +515,24 @@
           body: formData
         });
         
-        console.log('Response status:', response.status);
-        console.log('Response ok:', response.ok);
         const responseText = await response.text();
-        console.log('Response text:', responseText);
+        console.log('Response:', responseText);
         
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${responseText}`);
+        if (!response.ok || responseText.includes('Error')) {
+          throw new Error(`Server error: ${responseText}`);
         }
+        
+        // Store locally only after successful server submission
+        subscribers.push(normalizedEmail);
+        localStorage.setItem('rivval_subscribers', JSON.stringify(subscribers));
         
         // Success
         button.textContent = '✅ Added!';
         button.style.background = 'var(--success-green)';
         emailInput.value = '';
+        
+        // Update global count
+        updateSubscriberCount();
         
         setTimeout(() => {
           button.textContent = originalText;
@@ -541,9 +542,10 @@
         
       } catch (error) {
         console.error('Failed to submit email:', error);
-        button.textContent = originalText;
+        button.textContent = 'Try Again';
         button.disabled = false;
-        alert('Something went wrong. Please try again.');
+        emailInput.focus();
+        alert('Network error. Please check your connection and try again.');
       }
     }
     
@@ -588,13 +590,23 @@
       }
     });
     
-    // Show subscriber count on load
-    document.addEventListener('DOMContentLoaded', function() {
-      const count = JSON.parse(localStorage.getItem('rivval_subscribers') || '[]').length;
-      if (count > 0) {
-        const badge = document.querySelector('.badge');
-        badge.innerHTML = `🚀 Launching Soon • ${count} waiting`;
+    // Fetch global subscriber count from backend
+    async function updateSubscriberCount() {
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzZSeN-lkBN6XxYalDxg3bd0G_71gwW6iGzMOYozvKP1fZmMFLXxOmgV7jmgcSTyb5S/exec?action=count');
+        const count = await response.text();
+        if (count && !isNaN(count) && count > 0) {
+          const badge = document.querySelector('.badge');
+          badge.innerHTML = `🚀 Launching Soon • ${count} waiting`;
+        }
+      } catch (error) {
+        console.log('Could not fetch subscriber count:', error);
       }
+    }
+    
+    // Load global subscriber count on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      updateSubscriberCount();
     });
   </script>
 </body>
