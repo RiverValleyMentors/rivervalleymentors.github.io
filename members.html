@@ -504,8 +504,8 @@
         subscribers.push(email);
         localStorage.setItem('rivval_subscribers', JSON.stringify(subscribers));
         
-        // Send to Google Sheets (replace with your script URL)
-        await fetch('https://script.google.com/macros/s/1XEuhEvbY89ybuXuKlQMRjaL39FCKS0IFxXXXlR-vkv3qGmi694ZqpZDJ/exec', {
+        // Send to Google Sheets
+        await fetch('https://script.google.com/macros/s/AKfycbzZSeN-lkBN6XxYalDxg3bd0G_71gwW6iGzMOYozvKP1fZmMFLXxOmgV7jmgcSTyb5S/exec', {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
