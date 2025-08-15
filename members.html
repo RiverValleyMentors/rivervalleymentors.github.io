@@ -117,34 +117,13 @@
       margin: 0 auto 24px;
     }
 
-    .logo-circle {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, #87CEEB 0%, #4A90E2 50%, #2E86AB 100%);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      box-shadow: 0 8px 32px rgba(135, 206, 235, 0.4);
-      animation: gentle-pulse 3s ease-in-out infinite;
-    }
-
     .logo-mem {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      position: relative;
-      z-index: 2;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    @keyframes gentle-pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
     }
 
     h1 {
@@ -402,7 +381,6 @@
   <div class="main-container">
     <div class="container">
       <div class="logo-container">
-        <div class="logo-circle"></div>
         <img src="rvm.png" alt="River Valley Mentors logo" class="logo-mem" loading="lazy">
       </div>
       <h1>RivVal's Base</h1>
@@ -495,9 +473,10 @@
   </div>
 
   <script>
-    function handleNotifyMe() {
+    async function handleNotifyMe() {
       const emailInput = document.getElementById('emailInput');
       const email = emailInput.value.trim();
+      const button = document.querySelector('.notify-btn');
       
       if (!email) {
         alert('Please enter your email address!');
@@ -509,24 +488,46 @@
         return;
       }
       
-      // Here you would typically send the email to your backend
-      // For now, we'll show a success message and create a mailto link
-      const subject = encodeURIComponent('RivVal Members Area - Notify Me');
-      const body = encodeURIComponent(`Hi RivVal Team,\n\nPlease notify me when the Members Area launches!\n\nEmail: ${email}\n\nThanks!`);
+      // Check if already subscribed
+      const subscribers = JSON.parse(localStorage.getItem('rivval_subscribers') || '[]');
+      if (subscribers.includes(email)) {
+        alert('You\'re already subscribed!');
+        return;
+      }
       
-      window.location.href = `mailto:rivervalleymentors@gmail.com?subject=${subject}&body=${body}`;
-      
-      // Show success feedback
-      const button = document.querySelector('.notify-btn');
       const originalText = button.textContent;
-      button.textContent = '✅ Added!';
-      button.style.background = 'var(--success-green)';
+      button.textContent = 'Adding...';
+      button.disabled = true;
       
-      setTimeout(() => {
-        button.textContent = originalText;
-        button.style.background = 'linear-gradient(135deg, var(--primary-green), var(--accent-green))';
+      try {
+        // Store locally
+        subscribers.push(email);
+        localStorage.setItem('rivval_subscribers', JSON.stringify(subscribers));
+        
+        // Send to Google Sheets (replace with your script URL)
+        await fetch('https://script.google.com/macros/s/1XEuhEvbY89ybuXuKlQMRjaL39FCKS0IFxXXXlR-vkv3qGmi694ZqpZDJ/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, timestamp: new Date().toISOString() })
+        });
+        
+        // Success
+        button.textContent = '✅ Added!';
+        button.style.background = 'var(--success-green)';
         emailInput.value = '';
-      }, 3000);
+        
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = 'linear-gradient(135deg, var(--primary-green), var(--accent-green))';
+          button.disabled = false;
+        }, 3000);
+        
+      } catch (error) {
+        button.textContent = originalText;
+        button.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
     }
     
     function isValidEmail(email) {
@@ -567,6 +568,15 @@
     document.getElementById('emailInput').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         handleNotifyMe();
+      }
+    });
+    
+    // Show subscriber count on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const count = JSON.parse(localStorage.getItem('rivval_subscribers') || '[]').length;
+      if (count > 0) {
+        const badge = document.querySelector('.badge');
+        badge.innerHTML = `🚀 Launching Soon • ${count} waiting`;
       }
     });
   </script>
