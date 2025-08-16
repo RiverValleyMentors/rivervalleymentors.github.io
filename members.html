@@ -506,12 +506,25 @@
       
       try {
         console.log('Submitting email:', email);
+        console.log('Using URL:', GOOGLE_SCRIPT_URL);
         
         // Create proper JSON payload matching your Google Apps Script
         const payload = {
           email: email.toLowerCase(),
           timestamp: new Date().toISOString()
         };
+        
+        // First, test if the endpoint is reachable with a simple GET
+        const testResponse = await fetch(GOOGLE_SCRIPT_URL + '?action=test', {
+          method: 'GET',
+          mode: 'cors'
+        });
+        
+        if (!testResponse.ok) {
+          throw new Error(`Service unreachable. Test request failed with status: ${testResponse.status}`);
+        }
+        
+        console.log('Service test successful, proceeding with email submission...');
         
         const response = await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
@@ -548,7 +561,13 @@
         
       } catch (error) {
         console.error('Failed to submit email:', error);
-        alert(`Error: ${error.message}. Please try again or contact support.`);
+        
+        if (error.name === 'TypeError' || error.message.includes('Failed to fetch')) {
+          alert('Connection error. Please check:\n1. Your internet connection\n2. Try refreshing the page\n3. Contact support if the issue persists');
+        } else {
+          alert(`Error: ${error.message}. Please try again or contact support.`);
+        }
+        
         button.textContent = 'Try Again';
         emailInput.focus();
       } finally {
