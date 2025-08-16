@@ -478,161 +478,156 @@
     </div>
   </div>
 
-  <script>
-    // Replace with your actual Google Apps Script Web App URL
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCmlFN1ofKucLEnYw17XlmEbrm6O4p-DaErd8KiASo1Gh3QC4aHU7qs6bYP2Kn0-fA/exec';
+  // Replace with your actual Google Apps Script Web App URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0L79ZmieFiOmYrxX03lOiL3f3eOMRgedbstrGKUzFGSRTPchL_E92bWbHQU5viHv6/exec';
 
-    async function handleNotifyMe() {
-      const emailInput = document.getElementById('emailInput');
-      const email = emailInput.value.trim();
-      const button = document.querySelector('.notify-btn');
-      
-      if (!email) {
-        alert('Please enter your email address!');
-        emailInput.focus();
-        return;
-      }
-      
-      if (!isValidEmail(email)) {
-        alert('Please enter a valid email address!');
-        emailInput.focus();
-        return;
-      }
-      
-      const originalText = button.textContent;
-      const originalBg = button.style.background;
-      button.textContent = 'Adding...';
-      button.disabled = true;
-      
-      try {
-        console.log('Submitting email:', email);
-        console.log('Using URL:', GOOGLE_SCRIPT_URL);
-        
-        // Create proper JSON payload matching your Google Apps Script
-        const payload = {
-          email: email.toLowerCase(),
-          timestamp: new Date().toISOString()
-        };
-        
-        // First, test if the endpoint is reachable with a simple GET
-        const testResponse = await fetch(GOOGLE_SCRIPT_URL + '?action=test', {
-          method: 'GET',
-          mode: 'cors'
-        });
-        
-        if (!testResponse.ok) {
-          throw new Error(`Service unreachable. Test request failed with status: ${testResponse.status}`);
-        }
-        
-        console.log('Service test successful, proceeding with email submission...');
-        
-        // CORS FIX: Use text/plain content type to avoid preflight
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8',
-          },
-          body: JSON.stringify(payload)
-        });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const responseText = await response.text();
-        console.log('Server response:', responseText);
-        
-        // Parse JSON response if it's JSON
-        let result;
-        try {
-          result = JSON.parse(responseText);
-        } catch (jsonParseError) {
-          console.log('Response is not JSON, treating as plain text:', jsonParseError.message);
-          // If not JSON, treat as plain text
-          result = { message: responseText };
-        }
-        
-        const message = result.message || responseText;
-        
-        if (message.includes('Error') || result.status === 'error') {
-          throw new Error(`Server error: ${message}`);
-        }
-        
-        if (message === 'Already subscribed' || message.includes('Already subscribed')) {
-          alert('You\'re already subscribed! We\'ll notify you when we launch.');
-          button.textContent = 'Already Subscribed';
-          button.style.background = '#f59e0b';
-        } else {
-          // Success
-          button.textContent = '✅ Added!';
-          button.style.background = 'var(--success-green)';
-          alert('Thanks! We\'ll notify you when the members area launches.');
-        }
-        
-        emailInput.value = '';
-        
-      } catch (error) {
-        console.error('Failed to submit email:', error);
-        
-        if (error.name === 'TypeError' || error.message.includes('Failed to fetch')) {
-          alert('Connection error. Please check:\n1. Your internet connection\n2. Try refreshing the page\n3. Contact support if the issue persists');
-        } else {
-          alert(`Error: ${error.message}. Please try again or contact support.`);
-        }
-        
-        button.textContent = 'Try Again';
-        emailInput.focus();
-      } finally {
-        // Reset button after 3 seconds
+async function handleNotifyMe() {
+  const emailInput = document.getElementById('emailInput');
+  const email = emailInput.value.trim();
+  const button = document.querySelector('.notify-btn');
+  
+  if (!email) {
+    alert('Please enter your email address!');
+    emailInput.focus();
+    return;
+  }
+  
+  if (!isValidEmail(email)) {
+    alert('Please enter a valid email address!');
+    emailInput.focus();
+    return;
+  }
+  
+  const originalText = button.textContent;
+  const originalBg = button.style.background;
+  button.textContent = 'Adding...';
+  button.disabled = true;
+  
+  try {
+    console.log('Submitting email:', email);
+    console.log('Using URL:', GOOGLE_SCRIPT_URL);
+    
+    // Create proper JSON payload matching your Google Apps Script
+    const payload = {
+      email: email.toLowerCase(),
+      timestamp: new Date().toISOString()
+    };
+    
+    // First, test if the endpoint is reachable with a simple GET
+    const testResponse = await fetch(GOOGLE_SCRIPT_URL + '?action=test', {
+      method: 'GET',
+      mode: 'cors'
+    });
+    
+    if (!testResponse.ok) {
+      throw new Error(`Service unreachable. Test request failed with status: ${testResponse.status}`);
+    }
+    
+    console.log('Service test successful, proceeding with email submission...');
+    
+    // CORS FIX: Use text/plain content type to avoid preflight
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const responseText = await response.text();
+    console.log('Server response:', responseText);
+    
+    // Parse JSON response if it's JSON
+    let result;
+    try {
+      result = JSON.parse(responseText);
+    } catch (e) {
+      // If not JSON, treat as plain text
+      result = { message: responseText };
+    }
+    
+    const message = result.message || responseText;
+    
+    if (message.includes('Error') || result.status === 'error') {
+      throw new Error(`Server error: ${message}`);
+    }
+    
+    if (message === 'Already subscribed' || message.includes('Already subscribed')) {
+      alert('You\'re already subscribed! We\'ll notify you when we launch.');
+      button.textContent = 'Already Subscribed';
+      button.style.background = '#f59e0b';
+    } else {
+      // Success
+      button.textContent = '✅ Added!';
+      button.style.background = 'var(--success-green)';
+      alert('Thanks! We\'ll notify you when the members area launches.');
+    }
+    
+    emailInput.value = '';
+    
+  } catch (error) {
+    console.error('Failed to submit email:', error);
+    
+    if (error.name === 'TypeError' || error.message.includes('Failed to fetch')) {
+      alert('Connection error. Please check:\n1. Your internet connection\n2. Try refreshing the page\n3. Contact support if the issue persists');
+    } else {
+      alert(`Error: ${error.message}. Please try again or contact support.`);
+    }
+    
+    button.textContent = 'Try Again';
+    emailInput.focus();
+  } finally {
+    // Reset button after 3 seconds
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.style.background = originalBg || 'linear-gradient(135deg, var(--primary-green), var(--accent-green))';
+      button.disabled = false;
+    }, 3000);
+  }
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Add some interactive elements
+document.addEventListener('DOMContentLoaded', function() {
+  // Animate cards on scroll
+  const cards = document.querySelectorAll('.preview-card');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
         setTimeout(() => {
-          button.textContent = originalText;
-          button.style.background = originalBg || 'linear-gradient(135deg, var(--primary-green), var(--accent-green))';
-          button.disabled = false;
-        }, 3000);
-      }
-    }
-
-    function isValidEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
-
-    // Add some interactive elements
-    document.addEventListener('DOMContentLoaded', function() {
-      // Animate cards on scroll
-      const cards = document.querySelectorAll('.preview-card');
-      
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-      
-      const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }, index * 100);
-          }
-        });
-      }, observerOptions);
-      
-      cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        cardObserver.observe(card);
-      });
-    });
-
-    // Allow Enter key to submit notification signup
-    document.getElementById('emailInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        handleNotifyMe();
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, index * 100);
       }
     });
-  </script>
-</body>
-</html>
+  }, observerOptions);
+  
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    cardObserver.observe(card);
+  });
+});
+
+// Allow Enter key to submit notification signup
+document.getElementById('emailInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    handleNotifyMe();
+  }
+});
