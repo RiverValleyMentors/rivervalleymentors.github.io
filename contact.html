@@ -7,6 +7,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://rivervalleymentors.github.io/contact.html" />
   <meta name="theme-color" content="#2d5a5a" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Contact River Valley Mentors - Academic Tutoring Services">
+  <meta property="og:description" content="Get in touch with River Valley Mentors for personalized tutoring services. We're here to help you achieve your academic goals.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rivervalleymentors.github.io/contact.html">
+  <meta property="og:image" content="https://rivervalleymentors.github.io/rvm-social.png">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact River Valley Mentors">
+  <meta name="twitter:description" content="Professional tutoring services to help you succeed academically. Contact us today!">
+  <meta name="twitter:image" content="https://rivervalleymentors.github.io/rvm-social.png">
+  
+  <!-- Structured Data for Contact Information -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "River Valley Mentors",
+    "description": "Professional tutoring and academic mentoring services",
+    "url": "https://rivervalleymentors.github.io",
+    "logo": "https://rivervalleymentors.github.io/rvm.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-234-567-8900",
+      "contactType": "customer service",
+      "email": "rivervalleymentors@gmail.com",
+      "availableLanguage": "English",
+      "hoursAvailable": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "10:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "12:00",
+          "closes": "17:00"
+        }
+      ]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "River Valley",
+      "addressRegion": "Your State",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://facebook.com/rivervalleymentors",
+      "https://instagram.com/rivervalleymentors"
+    ]
+  }
+  </script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     
@@ -21,6 +84,7 @@
       --rival-blue: #3b82f6;
       --success-green: #10b981;
       --error-red: #ef4444;
+      --warning-yellow: #f59e0b;
       --gradient-bg: linear-gradient(135deg, var(--cream) 0%, var(--warm-cream) 100%);
     }
 
@@ -49,6 +113,7 @@
       height: 100%;
       overflow: hidden;
       z-index: 1;
+      pointer-events: none;
     }
 
     .floating-book {
@@ -316,15 +381,45 @@
       box-shadow: 0 0 0 3px rgba(45, 90, 90, 0.1);
     }
 
+    .form-input.error,
+    .form-textarea.error,
+    .form-select.error {
+      border-color: var(--error-red);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .form-input.success,
+    .form-textarea.success,
+    .form-select.success {
+      border-color: var(--success-green);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
     .form-textarea {
       resize: vertical;
       min-height: 120px;
+      max-height: 300px;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
+    }
+
+    .character-counter {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    .character-counter.warning {
+      color: var(--warning-yellow);
+    }
+
+    .character-counter.error {
+      color: var(--error-red);
     }
 
     .submit-btn {
@@ -339,6 +434,7 @@
       transition: all 0.3s ease;
       font-family: 'Poppins', sans-serif;
       width: 100%;
+      position: relative;
     }
 
     .submit-btn:hover:not(:disabled) {
@@ -350,6 +446,26 @@
       opacity: 0.7;
       cursor: not-allowed;
       transform: none;
+    }
+
+    .submit-btn .loading-spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+    }
+
+    .submit-btn.loading .loading-spinner {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .quick-info {
@@ -392,12 +508,15 @@
     }
 
     .success-message,
-    .error-message {
+    .error-message,
+    .info-message {
       padding: 16px 20px;
       border-radius: 12px;
       margin-bottom: 20px;
       font-weight: 500;
       display: none;
+      align-items: center;
+      gap: 12px;
     }
 
     .success-message {
@@ -410,6 +529,119 @@
       background: #fef2f2;
       color: #dc2626;
       border: 1px solid #fecaca;
+    }
+
+    .info-message {
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #93c5fd;
+    }
+
+    .message-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* Privacy Notice */
+    .privacy-notice {
+      background: rgba(45, 90, 90, 0.05);
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      border-left: 4px solid var(--primary-green);
+    }
+
+    .privacy-notice p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .privacy-notice a {
+      color: var(--primary-green);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .privacy-notice a:hover {
+      text-decoration: underline;
+    }
+
+    /* Loading overlay */
+    .form-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      z-index: 10;
+    }
+
+    .form-overlay.active {
+      display: flex;
+    }
+
+    .loading-message {
+      text-align: center;
+      color: var(--primary-green);
+    }
+
+    .loading-message .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(45, 90, 90, 0.1);
+      border-top: 4px solid var(--primary-green);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    /* Form validation styles */
+    .field-error {
+      color: var(--error-red);
+      font-size: 0.85rem;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .field-error.show {
+      display: block;
+    }
+
+    .field-success {
+      color: var(--success-green);
+      font-size: 0.85rem;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .field-success.show {
+      display: block;
+    }
+
+    /* Phone input formatting */
+    .phone-input-container {
+      position: relative;
+    }
+
+    .phone-prefix {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-weight: 500;
+    }
+
+    .phone-input {
+      padding-left: 65px !important;
     }
 
     @media (max-width: 768px) {
@@ -462,6 +694,57 @@
         padding: 24px 16px;
       }
     }
+
+    /* Accessibility improvements */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Focus improvements for keyboard navigation */
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus,
+    .submit-btn:focus,
+    .nav-link:focus {
+      outline: 2px solid var(--primary-green);
+      outline-offset: 2px;
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      :root {
+        --text-muted: #000000;
+        --primary-green: #1a4a4a;
+      }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      .floating-book,
+      .contact-method,
+      .submit-btn,
+      .loading-spinner,
+      .spinner {
+        animation: none;
+        transition: none;
+      }
+      
+      .submit-btn:hover:not(:disabled) {
+        transform: none;
+      }
+      
+      .contact-method:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -478,15 +761,15 @@
         <img src="rvm.png" alt="River Valley Mentors logo">
         <span class="logo-text">River Valley Mentors</span>
       </a>
-      <nav class="nav-links">
+      <nav class="nav-links" role="navigation" aria-label="Main navigation">
         <a href="index.html" class="nav-link">Home</a>
         <a href="members.html" class="nav-link">Members</a>
-        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="contact.html" class="nav-link active" aria-current="page">Contact</a>
       </nav>
     </div>
   </header>
 
-  <div class="main-container">
+  <main class="main-container">
     <div class="container">
       <div class="page-header">
         <h1 class="page-title">Get In Touch</h1>
@@ -505,37 +788,37 @@
       </div>
 
       <div class="contact-grid">
-        <div class="contact-info">
-          <h2 class="section-title">
+        <section class="contact-info" aria-labelledby="contact-info-title">
+          <h2 class="section-title" id="contact-info-title">
             📞 Contact Information
           </h2>
           
           <div class="contact-method">
-            <div class="contact-icon">📧</div>
+            <div class="contact-icon" aria-hidden="true">📧</div>
             <div class="contact-details">
               <h3>Email</h3>
-              <p><a href="mailto:rivervalleymentors@gmail.com">rivervalleymentors@gmail.com</a></p>
+              <p><a href="mailto:rivervalleymentors@gmail.com" aria-label="Send email to rivervalleymentors@gmail.com">rivervalleymentors@gmail.com</a></p>
             </div>
           </div>
 
           <div class="contact-method">
-            <div class="contact-icon">💬</div>
+            <div class="contact-icon" aria-hidden="true">💬</div>
             <div class="contact-details">
               <h3>Text Message</h3>
-              <p><a href="sms:+1234567890">+1 (234) 567-8900</a></p>
+              <p><a href="sms:+12345678900" aria-label="Send text message to +1 234 567 8900">+1 (234) 567-8900</a></p>
             </div>
           </div>
 
           <div class="contact-method">
-            <div class="contact-icon">📱</div>
+            <div class="contact-icon" aria-hidden="true">📱</div>
             <div class="contact-details">
               <h3>Phone Call</h3>
-              <p><a href="tel:+1234567890">+1 (234) 567-8900</a></p>
+              <p><a href="tel:+12345678900" aria-label="Call +1 234 567 8900">+1 (234) 567-8900</a></p>
             </div>
           </div>
 
           <div class="contact-method">
-            <div class="contact-icon">🕒</div>
+            <div class="contact-icon" aria-hidden="true">🕒</div>
             <div class="contact-details">
               <h3>Office Hours</h3>
               <p>Monday - Friday: 9 AM - 8 PM<br>
@@ -548,46 +831,113 @@
             <h4>📬 Response Time</h4>
             <p>We typically respond to emails within 2-4 hours during business hours, and within 24 hours on weekends.</p>
           </div>
-        </div>
+        </section>
 
-        <div class="contact-form">
-          <h2 class="section-title">
+        <section class="contact-form" aria-labelledby="contact-form-title">
+          <div class="form-overlay" id="formOverlay">
+            <div class="loading-message">
+              <div class="spinner"></div>
+              <p>Sending your message...</p>
+            </div>
+          </div>
+
+          <h2 class="section-title" id="contact-form-title">
             ✉️ Send us a Message
           </h2>
 
-          <div class="success-message" id="successMessage">
-            ✅ Thank you! Your message has been sent successfully. We'll get back to you soon!
+          <div class="success-message" id="successMessage" role="alert" aria-live="polite">
+            <span class="message-icon">✅</span>
+            <span>Thank you! Your message has been sent successfully. We'll get back to you soon!</span>
           </div>
           
-          <div class="error-message" id="errorMessage">
-            ❌ Sorry, there was an error sending your message. Please try again or contact us directly.
+          <div class="error-message" id="errorMessage" role="alert" aria-live="assertive">
+            <span class="message-icon">❌</span>
+            <span id="errorText">Sorry, there was an error sending your message. Please try again or contact us directly.</span>
           </div>
 
-          <form id="contactForm">
+          <div class="info-message" id="infoMessage" role="alert" aria-live="polite">
+            <span class="message-icon">ℹ️</span>
+            <span id="infoText"></span>
+          </div>
+
+          <form id="contactForm" novalidate>
             <div class="form-row">
               <div class="form-group">
                 <label for="firstName" class="form-label">First Name *</label>
-                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  name="firstName" 
+                  class="form-input" 
+                  required 
+                  maxlength="50"
+                  autocomplete="given-name"
+                  aria-describedby="firstName-error firstName-success"
+                >
+                <div class="field-error" id="firstName-error" role="alert"></div>
+                <div class="field-success" id="firstName-success"></div>
               </div>
               <div class="form-group">
                 <label for="lastName" class="form-label">Last Name *</label>
-                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  name="lastName" 
+                  class="form-input" 
+                  required 
+                  maxlength="50"
+                  autocomplete="family-name"
+                  aria-describedby="lastName-error lastName-success"
+                >
+                <div class="field-error" id="lastName-error" role="alert"></div>
+                <div class="field-success" id="lastName-success"></div>
               </div>
             </div>
 
             <div class="form-group">
               <label for="email" class="form-label">Email Address *</label>
-              <input type="email" id="email" name="email" class="form-input" required>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-input" 
+                required 
+                maxlength="100"
+                autocomplete="email"
+                aria-describedby="email-error email-success"
+              >
+              <div class="field-error" id="email-error" role="alert"></div>
+              <div class="field-success" id="email-success"></div>
             </div>
 
             <div class="form-group">
               <label for="phone" class="form-label">Phone Number</label>
-              <input type="tel" id="phone" name="phone" class="form-input">
+              <div class="phone-input-container">
+                <span class="phone-prefix">+1</span>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  class="form-input phone-input" 
+                  maxlength="14"
+                  placeholder="(234) 567-8900"
+                  autocomplete="tel"
+                  aria-describedby="phone-error phone-success"
+                >
+              </div>
+              <div class="field-error" id="phone-error" role="alert"></div>
+              <div class="field-success" id="phone-success"></div>
             </div>
 
             <div class="form-group">
               <label for="subject" class="form-label">Subject *</label>
-              <select id="subject" name="subject" class="form-select" required>
+              <select 
+                id="subject" 
+                name="subject" 
+                class="form-select" 
+                required
+                aria-describedby="subject-error subject-success"
+              >
                 <option value="">Select a subject...</option>
                 <option value="tutoring-inquiry">Tutoring Services Inquiry</option>
                 <option value="scheduling">Schedule a Session</option>
@@ -598,135 +948,615 @@
                 <option value="partnership">Partnership Opportunities</option>
                 <option value="other">Other</option>
               </select>
+              <div class="field-error" id="subject-error" role="alert"></div>
+              <div class="field-success" id="subject-success"></div>
             </div>
 
             <div class="form-group">
               <label for="message" class="form-label">Message *</label>
-              <textarea id="message" name="message" class="form-textarea" 
+              <textarea 
+                id="message" 
+                name="message" 
+                class="form-textarea" 
                 placeholder="Tell us about your academic goals, what subjects you need help with, or any questions you have..." 
-                required></textarea>
+                required
+                maxlength="5000"
+                aria-describedby="message-error message-success message-counter"
+              ></textarea>
+              <div class="character-counter" id="message-counter">0 / 5000</div>
+              <div class="field-error" id="message-error" role="alert"></div>
+              <div class="field-success" id="message-success"></div>
             </div>
 
             <button type="submit" class="submit-btn" id="submitBtn">
-              📨 Send Message
+              <span class="loading-spinner"></span>
+              <span class="btn-text">📨 Send Message</span>
             </button>
           </form>
-        </div>
+
+          <div class="privacy-notice">
+            <p>
+              <strong>Privacy Notice:</strong> Your personal information is secure with us. 
+              We only use your contact details to respond to your inquiry and will never share 
+              them with third parties. By submitting this form, you consent to us contacting 
+              you about our tutoring services.
+            </p>
+          </div>
+        </section>
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
-    // Replace with your actual Google Apps Script Web App URL for contact form
+    // Configuration - UPDATE THIS URL WITH YOUR ACTUAL GOOGLE APPS SCRIPT WEB APP URL
     const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
 
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const form = e.target;
-      const formData = new FormData(form);
-      const submitBtn = document.getElementById('submitBtn');
-      const successMsg = document.getElementById('successMessage');
-      const errorMsg = document.getElementById('errorMessage');
-      
-      // Hide previous messages
-      successMsg.style.display = 'none';
-      errorMsg.style.display = 'none';
-      
-      // Update button
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = '📤 Sending...';
-      submitBtn.disabled = true;
-      
-      try {
-        // Create payload
-        const payload = {
-          type: 'contact',
-          firstName: formData.get('firstName'),
-          lastName: formData.get('lastName'),
-          email: formData.get('email'),
-          phone: formData.get('phone') || '',
-          subject: formData.get('subject'),
-          message: formData.get('message'),
-          timestamp: new Date().toISOString()
-        };
-        
-        // For demo purposes, simulate successful submission
-        // Replace this with actual fetch to your Google Apps Script
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Success simulation - replace with real API call
-        console.log('Contact form data:', payload);
-        
-        // Show success message
-        successMsg.style.display = 'block';
-        form.reset();
-        
-        // Scroll to success message
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        // Update button
-        submitBtn.textContent = '✅ Sent!';
-        submitBtn.style.background = 'var(--success-green)';
-        
-      } catch (error) {
-        console.error('Failed to submit contact form:', error);
-        errorMsg.style.display = 'block';
-        errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        submitBtn.textContent = '❌ Try Again';
-      } finally {
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.style.background = '';
-          submitBtn.disabled = false;
-        }, 3000);
+    // Form elements
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const loadingSpinner = submitBtn.querySelector('.loading-spinner');
+    const formOverlay = document.getElementById('formOverlay');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const infoMessage = document.getElementById('infoMessage');
+    const messageCounter = document.getElementById('message-counter');
+    const messageTextarea = document.getElementById('message');
+
+    // Validation patterns
+    const validationRules = {
+      firstName: {
+        required: true,
+        minLength: 1,
+        maxLength: 50,
+        pattern: /^[a-zA-Z\s\-']+$/,
+        message: 'First name should only contain letters, spaces, hyphens, and apostrophes'
+      },
+      lastName: {
+        required: true,
+        minLength: 1,
+        maxLength: 50,
+        pattern: /^[a-zA-Z\s\-']+$/,
+        message: 'Last name should only contain letters, spaces, hyphens, and apostrophes'
+      },
+      email: {
+        required: true,
+        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        message: 'Please enter a valid email address'
+      },
+      phone: {
+        required: false,
+        pattern: /^\(\d{3}\) \d{3}-\d{4}$/,
+        message: 'Please enter a valid phone number: (234) 567-8900'
+      },
+      subject: {
+        required: true,
+        message: 'Please select a subject'
+      },
+      message: {
+        required: true,
+        minLength: 10,
+        maxLength: 5000,
+        message: 'Message must be at least 10 characters long'
       }
+    };
+
+    // Initialize form
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeForm();
+      addEventListeners();
+      loadFormFromStorage();
     });
 
-    // Form validation
-    function validateForm() {
-      const required = document.querySelectorAll('[required]');
+    function initializeForm() {
+      // Hide all messages initially
+      hideAllMessages();
+      
+      // Set initial character counter
+      updateCharacterCounter();
+      
+      // Add phone formatting
+      formatPhoneInput();
+      
+      // Add accessibility improvements
+      addAriaDescriptions();
+    }
+
+    function addEventListeners() {
+      // Form submission
+      form.addEventListener('submit', handleFormSubmit);
+      
+      // Real-time validation
+      Object.keys(validationRules).forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (field) {
+          field.addEventListener('blur', () => validateField(fieldName));
+          field.addEventListener('input', () => {
+            clearFieldError(fieldName);
+            if (fieldName === 'message') {
+              updateCharacterCounter();
+            }
+            saveFormToStorage();
+          });
+        }
+      });
+
+      // Phone formatting
+      const phoneInput = document.getElementById('phone');
+      phoneInput.addEventListener('input', formatPhoneNumber);
+      phoneInput.addEventListener('keydown', handlePhoneKeydown);
+      
+      // Prevent form submission on Enter in phone field
+      phoneInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+        }
+      });
+
+      // Auto-save form data
+      form.addEventListener('input', saveFormToStorage);
+      
+      // Clear form data on successful submission
+      successMessage.addEventListener('DOMNodeInserted', clearFormStorage);
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      // Hide all messages
+      hideAllMessages();
+      
+      // Validate all fields
+      const isValid = validateAllFields();
+      if (!isValid) {
+        showError('Please correct the errors above and try again.');
+        return;
+      }
+      
+      // Show loading state
+      setLoadingState(true);
+      
+      try {
+        // Prepare form data
+        const formData = new FormData(form);
+        const payload = {
+          type: 'contact',
+          firstName: formData.get('firstName').trim(),
+          lastName: formData.get('lastName').trim(),
+          email: formData.get('email').trim(),
+          phone: formData.get('phone').trim() || '',
+          subject: formData.get('subject'),
+          message: formData.get('message').trim(),
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+          referrer: document.referrer
+        };
+        
+        // Submit to Google Apps Script
+        const response = await fetch(CONTACT_SCRIPT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          showSuccess();
+          form.reset();
+          updateCharacterCounter();
+          clearFormStorage();
+        } else {
+          throw new Error(result.error || 'Unknown error occurred');
+        }
+        
+      } catch (error) {
+        console.error('Form submission error:', error);
+        handleSubmissionError(error);
+      } finally {
+        setLoadingState(false);
+      }
+    }
+
+    function validateAllFields() {
       let isValid = true;
       
-      required.forEach(field => {
-        if (!field.value.trim()) {
-          field.style.borderColor = 'var(--error-red)';
+      Object.keys(validationRules).forEach(fieldName => {
+        if (!validateField(fieldName)) {
           isValid = false;
-        } else {
-          field.style.borderColor = '';
         }
       });
       
       return isValid;
     }
 
-    // Real-time validation
-    document.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(field => {
-      field.addEventListener('blur', function() {
-        if (this.required && !this.value.trim()) {
-          this.style.borderColor = 'var(--error-red)';
-        } else {
-          this.style.borderColor = '';
-        }
-      });
+    function validateField(fieldName) {
+      const field = document.getElementById(fieldName);
+      const rule = validationRules[fieldName];
+      const value = field.value.trim();
       
-      field.addEventListener('input', function() {
-        if (this.style.borderColor === 'rgb(239, 68, 68)') { // error-red
-          this.style.borderColor = '';
+      // Clear previous validation state
+      clearFieldError(fieldName);
+      clearFieldSuccess(fieldName);
+      
+      // Required field validation
+      if (rule.required && !value) {
+        showFieldError(fieldName, `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`);
+        return false;
+      }
+      
+      // Skip other validations if field is empty and not required
+      if (!value && !rule.required) {
+        return true;
+      }
+      
+      // Length validation
+      if (rule.minLength && value.length < rule.minLength) {
+        showFieldError(fieldName, `Must be at least ${rule.minLength} characters long`);
+        return false;
+      }
+      
+      if (rule.maxLength && value.length > rule.maxLength) {
+        showFieldError(fieldName, `Must be no more than ${rule.maxLength} characters long`);
+        return false;
+      }
+      
+      // Pattern validation
+      if (rule.pattern && !rule.pattern.test(value)) {
+        showFieldError(fieldName, rule.message);
+        return false;
+      }
+      
+      // Show success state
+      showFieldSuccess(fieldName);
+      return true;
+    }
+
+    function showFieldError(fieldName, message) {
+      const field = document.getElementById(fieldName);
+      const errorDiv = document.getElementById(`${fieldName}-error`);
+      
+      field.classList.add('error');
+      field.classList.remove('success');
+      errorDiv.textContent = message;
+      errorDiv.classList.add('show');
+      
+      // Accessibility
+      field.setAttribute('aria-invalid', 'true');
+    }
+
+    function showFieldSuccess(fieldName) {
+      const field = document.getElementById(fieldName);
+      const successDiv = document.getElementById(`${fieldName}-success`);
+      
+      field.classList.add('success');
+      field.classList.remove('error');
+      successDiv.textContent = '✓';
+      successDiv.classList.add('show');
+      
+      // Accessibility
+      field.setAttribute('aria-invalid', 'false');
+    }
+
+    function clearFieldError(fieldName) {
+      const field = document.getElementById(fieldName);
+      const errorDiv = document.getElementById(`${fieldName}-error`);
+      
+      field.classList.remove('error');
+      errorDiv.classList.remove('show');
+      field.removeAttribute('aria-invalid');
+    }
+
+    function clearFieldSuccess(fieldName) {
+      const field = document.getElementById(fieldName);
+      const successDiv = document.getElementById(`${fieldName}-success`);
+      
+      field.classList.remove('success');
+      successDiv.classList.remove('show');
+    }
+
+    function formatPhoneNumber(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      
+      // Limit to 10 digits
+      if (value.length > 10) {
+        value = value.slice(0, 10);
+      }
+      
+      // Format as (xxx) xxx-xxxx
+      if (value.length >= 6) {
+        value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6)}`;
+      } else if (value.length >= 3) {
+        value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+      } else if (value.length > 0) {
+        value = `(${value}`;
+      }
+      
+      e.target.value = value;
+    }
+
+    function handlePhoneKeydown(e) {
+      // Allow: backspace, delete, tab, escape, enter, and .
+      if ([46, 8, 9, 27, 13, 110, 190].includes(e.keyCode) ||
+          // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+          (e.keyCode === 65 && e.ctrlKey === true) ||
+          (e.keyCode === 67 && e.ctrlKey === true) ||
+          (e.keyCode === 86 && e.ctrlKey === true) ||
+          (e.keyCode === 88 && e.ctrlKey === true) ||
+          // Allow: home, end, left, right, down, up
+          (e.keyCode >= 35 && e.keyCode <= 40)) {
+        return;
+      }
+      // Ensure that it is a number and stop the keypress
+      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+        e.preventDefault();
+      }
+    }
+
+    function formatPhoneInput() {
+      const phoneInput = document.getElementById('phone');
+      phoneInput.placeholder = '(234) 567-8900';
+    }
+
+    function updateCharacterCounter() {
+      const length = messageTextarea.value.length;
+      const maxLength = 5000;
+      const remaining = maxLength - length;
+      
+      messageCounter.textContent = `${length} / ${maxLength}`;
+      
+      // Update styling based on character count
+      if (remaining < 100) {
+        messageCounter.className = 'character-counter error';
+      } else if (remaining < 500) {
+        messageCounter.className = 'character-counter warning';
+      } else {
+        messageCounter.className = 'character-counter';
+      }
+    }
+
+    function setLoadingState(loading) {
+      if (loading) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        btnText.textContent = 'Sending Message...';
+        formOverlay.classList.add('active');
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        btnText.textContent = '📨 Send Message';
+        formOverlay.classList.remove('active');
+      }
+    }
+
+    function showSuccess() {
+      hideAllMessages();
+      successMessage.style.display = 'flex';
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // Update button temporarily
+      btnText.textContent = '✅ Message Sent!';
+      submitBtn.style.background = 'var(--success-green)';
+      
+      setTimeout(() => {
+        btnText.textContent = '📨 Send Message';
+        submitBtn.style.background = '';
+      }, 3000);
+    }
+
+    function showError(message) {
+      hideAllMessages();
+      document.getElementById('errorText').textContent = message;
+      errorMessage.style.display = 'flex';
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function showInfo(message) {
+      hideAllMessages();
+      document.getElementById('infoText').textContent = message;
+      infoMessage.style.display = 'flex';
+      infoMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function hideAllMessages() {
+      successMessage.style.display = 'none';
+      errorMessage.style.display = 'none';
+      infoMessage.style.display = 'none';
+    }
+
+    function handleSubmissionError(error) {
+      let errorMessage = 'Sorry, there was an error sending your message. ';
+      
+      if (error.message.includes('fetch')) {
+        errorMessage += 'Please check your internet connection and try again.';
+      } else if (error.message.includes('429')) {
+        errorMessage += 'You\'ve sent too many messages recently. Please wait a moment before trying again.';
+      } else if (error.message.includes('400')) {
+        errorMessage += 'Please check your information and try again.';
+      } else {
+        errorMessage += 'Please try again in a few moments or contact us directly.';
+      }
+      
+      showError(errorMessage);
+    }
+
+    // Form data persistence
+    function saveFormToStorage() {
+      if (!('localStorage' in window)) return;
+      
+      try {
+        const formData = {
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value,
+          timestamp: Date.now()
+        };
+        
+        localStorage.setItem('rvm_contact_form', JSON.stringify(formData));
+      } catch (e) {
+        console.warn('Could not save form data:', e);
+      }
+    }
+
+    function loadFormFromStorage() {
+      if (!('localStorage' in window)) return;
+      
+      try {
+        const savedData = localStorage.getItem('rvm_contact_form');
+        if (!savedData) return;
+        
+        const formData = JSON.parse(savedData);
+        
+        // Don't load if data is older than 1 hour
+        if (Date.now() - formData.timestamp > 60 * 60 * 1000) {
+          localStorage.removeItem('rvm_contact_form');
+          return;
+        }
+        
+        // Restore form values
+        Object.keys(formData).forEach(key => {
+          if (key !== 'timestamp') {
+            const field = document.getElementById(key);
+            if (field && formData[key]) {
+              field.value = formData[key];
+            }
+          }
+        });
+        
+        updateCharacterCounter();
+        
+        // Show info message about restored data
+        if (Object.values(formData).some(value => value && value.toString().trim())) {
+          showInfo('We restored your previous form data. You can continue where you left off.');
+          setTimeout(hideAllMessages, 5000);
+        }
+        
+      } catch (e) {
+        console.warn('Could not load form data:', e);
+        localStorage.removeItem('rvm_contact_form');
+      }
+    }
+
+    function clearFormStorage() {
+      if (!('localStorage' in window)) return;
+      
+      try {
+        localStorage.removeItem('rvm_contact_form');
+      } catch (e) {
+        console.warn('Could not clear form data:', e);
+      }
+    }
+
+    function addAriaDescriptions() {
+      // Add helpful aria descriptions
+      document.getElementById('firstName').setAttribute('aria-label', 'Enter your first name');
+      document.getElementById('lastName').setAttribute('aria-label', 'Enter your last name');
+      document.getElementById('email').setAttribute('aria-label', 'Enter your email address');
+      document.getElementById('phone').setAttribute('aria-label', 'Enter your phone number (optional)');
+      document.getElementById('subject').setAttribute('aria-label', 'Select the subject of your inquiry');
+      document.getElementById('message').setAttribute('aria-label', 'Enter your message or question');
+    }
+
+    // Accessibility improvements
+    function announceToScreenReader(message) {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.className = 'sr-only';
+      announcement.textContent = message;
+      
+      document.body.appendChild(announcement);
+      
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    }
+
+    // Enhanced form validation with better UX
+    function enhancedValidation() {
+      // Add custom validation messages
+      const emailInput = document.getElementById('email');
+      emailInput.addEventListener('input', function() {
+        if (this.validity.typeMismatch) {
+          this.setCustomValidity('Please enter a valid email address (e.g., john@example.com)');
+        } else {
+          this.setCustomValidity('');
         }
       });
-    });
 
-    // Email validation
-    document.getElementById('email').addEventListener('blur', function() {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (this.value && !emailRegex.test(this.value)) {
-        this.style.borderColor = 'var(--error-red)';
+      // Add password strength indicator for future use
+      const messageInput = document.getElementById('message');
+      messageInput.addEventListener('input', function() {
+        const wordCount = this.value.trim().split(/\s+/).length;
+        const charCount = this.value.length;
+        
+        if (charCount > 0 && charCount < 10) {
+          this.setCustomValidity('Please provide more details (at least 10 characters)');
+        } else {
+          this.setCustomValidity('');
+        }
+      });
+    }
+
+    // Initialize enhanced validation
+    document.addEventListener('DOMContentLoaded', enhancedValidation);
+
+    // Performance optimization: debounce form saving
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    // Debounced save function
+    const debouncedSave = debounce(saveFormToStorage, 300);
+
+    // Replace the direct save with debounced version
+    form.addEventListener('input', debouncedSave);
+
+    // Form analytics (privacy-friendly)
+    function trackFormInteraction(action, field = '') {
+      // Only track if analytics is available and user hasn't opted out
+      if (typeof gtag === 'function' && !localStorage.getItem('analytics-opt-out')) {
+        gtag('event', 'form_interaction', {
+          'event_category': 'contact_form',
+          'event_label': action,
+          'custom_parameter': field
+        });
+      }
+    }
+
+    // Track form start
+    form.addEventListener('focus', () => {
+      trackFormInteraction('form_started');
+    }, { once: true });
+
+    // Track field interactions
+    Object.keys(validationRules).forEach(fieldName => {
+      const field = document.getElementById(fieldName);
+      if (field) {
+        field.addEventListener('focus', () => {
+          trackFormInteraction('field_focused', fieldName);
+        }, { once: true });
       }
     });
 
-    // Smooth animations on scroll
+    // Smooth animations on scroll (Intersection Observer)
     document.addEventListener('DOMContentLoaded', function() {
       const observerOptions = {
         threshold: 0.1,
@@ -749,7 +1579,107 @@
         method.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
         fadeInObserver.observe(method);
       });
+
+      // Animate form sections
+      ['.contact-info', '.contact-form'].forEach(selector => {
+        const element = document.querySelector(selector);
+        if (element) {
+          element.style.opacity = '0';
+          element.style.transform = 'translateY(30px)';
+          element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+          fadeInObserver.observe(element);
+        }
+      });
     });
+
+    // Handle form submission with retry logic
+    async function submitWithRetry(payload, maxRetries = 3) {
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          const response = await fetch(CONTACT_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          return await response.json();
+        } catch (error) {
+          if (attempt === maxRetries) {
+            throw error;
+          }
+          
+          // Wait before retrying (exponential backoff)
+          await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+        }
+      }
+    }
+
+    // Replace the original fetch in handleFormSubmit with this retry logic
+    // (This would replace the fetch call in the handleFormSubmit function above)
+
+    // Browser compatibility checks
+    function checkBrowserCompatibility() {
+      const warnings = [];
+      
+      if (!window.fetch) {
+        warnings.push('Your browser may not support all features. Please consider updating.');
+      }
+      
+      if (!window.localStorage) {
+        warnings.push('Form auto-save is not available in your browser.');
+      }
+      
+      if (warnings.length > 0 && !localStorage.getItem('compatibility-warning-shown')) {
+        showInfo(warnings.join(' '));
+        localStorage.setItem('compatibility-warning-shown', 'true');
+      }
+    }
+
+    // Initialize compatibility check
+    document.addEventListener('DOMContentLoaded', checkBrowserCompatibility);
+
+    // Print styles optimization
+    window.addEventListener('beforeprint', function() {
+      // Hide interactive elements when printing
+      document.querySelectorAll('.floating-elements, .form-overlay').forEach(el => {
+        el.style.display = 'none';
+      });
+    });
+
+    window.addEventListener('afterprint', function() {
+      // Restore interactive elements after printing
+      document.querySelectorAll('.floating-elements, .form-overlay').forEach(el => {
+        el.style.display = '';
+      });
+    });
+
+    // Service Worker registration (for offline functionality)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(function(error) {
+        console.log('ServiceWorker registration failed: ', error);
+      });
+    }
+  </script>
+
+  <!-- Schema.org structured data for better SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "telephone": "+1-234-567-8900",
+      "email": "rivervalleymentors@gmail.com",
+      "availableLanguage": "English"
+    }
+  }
   </script>
 </body>
 </html>
